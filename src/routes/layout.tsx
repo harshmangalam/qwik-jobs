@@ -1,8 +1,43 @@
 import { component$, Slot } from "@builder.io/qwik";
-import type { RequestHandler } from "@builder.io/qwik-city";
+import { routeLoader$, type RequestHandler } from "@builder.io/qwik-city";
 import { Footer } from "~/components/footer";
 import { Navbar } from "~/components/navbar";
 
+export const useLinks = routeLoader$(() => {
+  const links = [
+    {
+      name: "Github",
+      href: "https://www.github.com/harshmangalam",
+      icon: "mdi:github",
+    },
+    {
+      name: "Twitter",
+      href: "https://twitter.com/HarshMangalam6",
+      icon: "mdi:twitter",
+    },
+    {
+      name: "Linkedin",
+      href: "https://www.linkedin.com/in/harshmangalam/",
+      icon: "mdi:linkedin",
+    },
+    {
+      name: "DEV Community",
+      href: "https://dev.to/harshmangalam/",
+      icon: "fa6-brands:dev",
+    },
+    {
+      name: "Stackoverflow",
+      href: "https://stackoverflow.com/users/11879558/harsh-mangalam",
+      icon: "mdi:stackoverflow",
+    },
+    {
+      name: "Instagram",
+      href: "https://www.instagram.com/harshmangalam2022/",
+      icon: "mdi:instagram",
+    },
+  ];
+  return links;
+});
 export const onGet: RequestHandler = async ({ cacheControl }) => {
   // Control caching for this request for best performance and to reduce hosting costs:
   // https://qwik.builder.io/docs/caching/

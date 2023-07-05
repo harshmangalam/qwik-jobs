@@ -1,7 +1,9 @@
 import { component$ } from "@builder.io/qwik";
 import { Logo } from "./logo";
+import { useLinks } from "~/routes/layout";
 
 export const Footer = component$(() => {
+  const links = useLinks();
   return (
     <footer class="footer p-10 bg-base-100 text-base-content">
       <div>
@@ -28,9 +30,13 @@ export const Footer = component$(() => {
       </div>
       <div>
         <span class="footer-title">Follow us</span>
-        <a class="link link-hover"></a>
-        <a class="link link-hover"></a>
-        <a class="link link-hover"></a>
+        <div>
+          {links.value.map(({ href, icon, name }) => (
+            <a key={name} href={href} class="btn btn-circle btn-ghost">
+              <iconify-icon width={24} height={24} icon={icon}></iconify-icon>
+            </a>
+          ))}
+        </div>
       </div>
     </footer>
   );
