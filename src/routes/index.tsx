@@ -64,7 +64,7 @@ export default component$(() => {
 
       <section class="bg-base-100 py-12 container mx-auto">
         <div class="text-xl font-bold text-center mb-4">Lastest Qwik Jobs</div>
-        <div class="grid grid-cols-1 gap-4">
+        <div class="grid grid-cols-1 gap-4 max-w-3xl mx-auto">
           {[...new Array(4)].map((job) => (
             <JobCard />
           ))}
