@@ -13,8 +13,8 @@ export default component$(() => {
             <span class="text-info inline-block"> Qwik </span> Developers
           </div>
           <div class="md:text-2xl mt-4">
-            Find companies looking to hire Svelte developers or post a job if
-            you are hiring Svelte developers.
+            Find companies looking to hire Qwik developers or post a job if you
+            are hiring Qwik developers.
           </div>
           <h4 class="mt-8 uppercase text-sm text-gray-600"> Trusted by: </h4>
           <div class="flex flex-wrap justify-center items-center gap-x-2 md:gap-x-8 gap-y-4 mt-2">
