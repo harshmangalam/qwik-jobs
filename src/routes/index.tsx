@@ -92,6 +92,14 @@ export default component$(() => {
           </div>
         </div>
       </section>
+
+      <section class="py-12 bg-base-200">
+        <div class="container mx-auto">
+          <div class="font-bold text-3xl text-center">
+            A little bit of numbers...
+          </div>
+        </div>
+      </section>
     </div>
   );
 });
