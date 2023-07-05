@@ -5,7 +5,7 @@ import { ProfileMenu } from "./profile-menu";
 
 export const Navbar = component$(() => {
   return (
-    <nav class="navbar bg-base-100">
+    <nav class="navbar  shadow">
       <div class="navbar-start">
         <div class="dropdown">
           <label tabIndex={0} class="btn btn-ghost lg:hidden">
@@ -26,7 +26,7 @@ export const Navbar = component$(() => {
           </label>
           <ul
             tabIndex={0}
-            class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+            class="menu dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
           >
             <li>
               <Link href="/jobs">Browse jobs</Link>
@@ -39,7 +39,7 @@ export const Navbar = component$(() => {
         <Logo />
       </div>
       <div class="navbar-center hidden lg:flex">
-        <ul class="menu menu-horizontal px-1">
+        <ul class="menu menu-md menu-horizontal px-1">
           <li>
             <Link href="/jobs">Browse jobs</Link>
           </li>
@@ -49,8 +49,8 @@ export const Navbar = component$(() => {
         </ul>
       </div>
 
-      <div class="navbar-end">
-        <Link href="/post-a-job" class="btn hidden md:flex">
+      <div class="navbar-end flex items-center gap-2">
+        <Link href="/post-a-job" class="btn btn-primary hidden md:flex">
           Post a job from $10
         </Link>
         <ProfileMenu />
