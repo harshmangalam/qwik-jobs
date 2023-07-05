@@ -22,6 +22,7 @@ export default component$(() => {
             <article class="card bg-base-200">
               <div class="card-body p-4">
                 <div class="card-title">Filters</div>
+                <JobType />
                 <ExperienceLevel />
                 <div class="card-actions">
                   <button type="submit" class="btn btn-primary btn-block">

@@ -3,23 +3,19 @@ import { component$ } from "@builder.io/qwik";
 export const JobType = component$(() => {
   return (
     <div class="form-control">
-      <label class="label cursor-pointer">
-        <span class="label-text">Full-time</span>
-        <input type="checkbox" class="checkbox" />
+      <label for="jobType" class="label cursor-pointer">
+        <span class="label-text">Job Type</span>
       </label>
-
-      <label class="label cursor-pointer">
-        <span class="label-text">Part-time</span>
-        <input type="checkbox" class="checkbox" />
-      </label>
-      <label class="label cursor-pointer">
-        <span class="label-text">Contract</span>
-        <input type="checkbox" class="checkbox" />
-      </label>
-      <label class="label cursor-pointer">
-        <span class="label-text">Internship</span>
-        <input type="checkbox" class="checkbox" />
-      </label>
+      <select
+        name="jobType"
+        id="jobType"
+        class="select select-bordered select-primary"
+      >
+        <option value="FullTime">Full-time</option>
+        <option value="PartTime">Part-time</option>
+        <option value="Contract">Contract</option>
+        <option value="Internship">Internship</option>
+      </select>
     </div>
   );
 });
