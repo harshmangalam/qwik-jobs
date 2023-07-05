@@ -1,5 +1,5 @@
 import { component$ } from "@builder.io/qwik";
-import type { DocumentHead } from "@builder.io/qwik-city";
+import { Link, type DocumentHead } from "@builder.io/qwik-city";
 import { JobCard } from "~/components/job-card";
 
 export default component$(() => {
@@ -67,6 +67,29 @@ export default component$(() => {
           {[...new Array(4)].map((job) => (
             <JobCard />
           ))}
+        </div>
+      </section>
+
+      <section class="bg-base-100 py-12">
+        <div class="container">
+          <div class="max-w-3xl mx-auto text-center">
+            <h2 class="text-5xl font-display font-bold">
+              Hire <strong class="text-primary">Qwik developers</strong>
+            </h2>
+            <p class="mt-4 text-lg">
+              Hire professional Qwik developers. Post your opening at
+              <strong> Qwik Jobs</strong> and get tech filtered qualified
+              candidates. Let us help you to find the best talent matches for
+              your openings and make it reach thousands of
+              <strong> Qwik developers</strong>!
+            </p>
+            <div class="py-12 flex items-center justify-center gap-3">
+              <Link href="post-a-job" class="btn btn-primary">
+                Post a job
+              </Link>
+              <span> and hire Svelte developers </span>
+            </div>
+          </div>
         </div>
       </section>
     </div>
