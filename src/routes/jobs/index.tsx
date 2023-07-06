@@ -1,5 +1,4 @@
 import { component$ } from "@builder.io/qwik";
-import { Form } from "@builder.io/qwik-city";
 import { JobCard } from "~/components/job-card";
 import { TwitterCard } from "~/components/twitter-card";
 
