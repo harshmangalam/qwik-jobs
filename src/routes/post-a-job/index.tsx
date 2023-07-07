@@ -34,6 +34,12 @@ export default component$(() => {
             name="twitter"
           />
         </div>
+        <TextInput
+          name="location"
+          id="location"
+          label="Location"
+          placeholder="Add location"
+        />
       </Form>
     </div>
   );
