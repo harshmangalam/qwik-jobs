@@ -1,5 +1,6 @@
 import { component$ } from "@builder.io/qwik";
 import { Link, type DocumentHead } from "@builder.io/qwik-city";
+import { Company } from "~/components/company";
 import { JobCard } from "~/components/job-card";
 import { JobStat } from "~/components/job-stat";
 
@@ -16,48 +17,11 @@ export default component$(() => {
             Find companies looking to hire Qwik developers or post a job if you
             are hiring Qwik developers.
           </div>
-          <h4 class="mt-8 uppercase text-sm text-gray-600"> Trusted by: </h4>
+          <h4 class="mt-8 uppercase text-sm mb-4"> Trusted by: </h4>
           <div class="flex flex-wrap justify-center items-center gap-x-2 md:gap-x-8 gap-y-4 mt-2">
-            <div class="relative p-3 rounded-full bg-white shadow-lg">
-              <img
-                class="h-10 w-10"
-                loading="lazy"
-                src="https://sveltejobs.com/images/logo-companies/apple_logo_grey.svg"
-                alt="Logo Apple company"
-              />
-            </div>
-            <div class="relative p-3 rounded-full bg-white shadow-lg">
-              <img
-                class="h-10 w-10"
-                loading="lazy"
-                src="https://sveltejobs.com/images/logo-companies/brave-logo.svg"
-                alt="Logo Brave company"
-              />
-            </div>
-            <div class="relative p-3 rounded-full bg-white shadow-lg">
-              <img
-                class="h-10 w-10"
-                loading="lazy"
-                src="https://sveltejobs.com/images/logo-companies/huggingface_logo.svg"
-                alt="Logo Hugging Face company"
-              />
-            </div>
-            <div class="relative p-3 rounded-full bg-white shadow-lg">
-              <img
-                class="h-10 w-10"
-                loading="lazy"
-                src="https://sveltejobs.com/images/logo-companies/latitude-logo-120x120.png"
-                alt="Logo Latitude company"
-              />
-            </div>
-            <div class="relative p-3 rounded-full bg-white shadow-lg">
-              <img
-                class="h-10 w-10"
-                loading="lazy"
-                src="https://sveltejobs.com/images/logo-companies/newyorktimes-icon.svg"
-                alt="Logo The New York Times company"
-              />
-            </div>
+            {[...new Array(4)].map((_) => (
+              <Company />
+            ))}
           </div>
         </div>
       </section>
