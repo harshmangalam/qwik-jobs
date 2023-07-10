@@ -20,21 +20,6 @@ export const useLinks = routeLoader$(() => {
       href: "https://www.linkedin.com/in/harshmangalam/",
       icon: "mdi:linkedin",
     },
-    {
-      name: "DEV Community",
-      href: "https://dev.to/harshmangalam/",
-      icon: "fa6-brands:dev",
-    },
-    {
-      name: "Stackoverflow",
-      href: "https://stackoverflow.com/users/11879558/harsh-mangalam",
-      icon: "mdi:stackoverflow",
-    },
-    {
-      name: "Instagram",
-      href: "https://www.instagram.com/harshmangalam2022/",
-      icon: "mdi:instagram",
-    },
   ];
   return links;
 });

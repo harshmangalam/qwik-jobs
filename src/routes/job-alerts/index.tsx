@@ -1,6 +1,5 @@
 import { component$ } from "@builder.io/qwik";
 import { Form } from "@builder.io/qwik-city";
-import { ImageUpload } from "~/components/image-upload";
 import { Button } from "~/components/ui/actions/button";
 import { TextInput } from "~/components/ui/data-input/text-input";
 

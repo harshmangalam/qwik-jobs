@@ -2,6 +2,7 @@ import { component$ } from "@builder.io/qwik";
 import { Logo } from "./logo";
 import { Link } from "@builder.io/qwik-city";
 import { ProfileMenu } from "./profile-menu";
+import { Theme } from "./theme";
 
 export const Navbar = component$(() => {
   return (
@@ -53,6 +54,7 @@ export const Navbar = component$(() => {
         <Link href="/post-a-job" class="btn btn-primary hidden md:flex">
           Post a job from $10
         </Link>
+        <Theme />
         <ProfileMenu />
       </div>
     </nav>
