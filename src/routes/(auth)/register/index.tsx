@@ -33,12 +33,15 @@ export default component$(() => {
             name="confirmPassword"
             id="confirmPassword"
           />
-          <div>
-            <input type="checkbox" class="toggle" checked />
+          <div class="flex items-center gap-4 mt-6">
+            <input type="checkbox" class="toggle toggle-primary" />
+            <p class="text-sm">
+              I agree with the <a class="link font-semibold">terms of use</a>
+            </p>
           </div>
-          <div class="mt-4">
+          <div class="mt-8">
             <Button type="submit" fullWidth>
-              Log in
+              Register
             </Button>
           </div>
         </Form>
