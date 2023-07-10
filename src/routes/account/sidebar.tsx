@@ -35,10 +35,10 @@ export const Sidebar = component$(() => {
       class="absolute bg-base-200 top-0 left-0 w-80 bottom-0
     "
     >
-      <div class="mb-8 px-2 py-4">
+      <div class="mb-4 p-4">
         <Logo />
       </div>
-      <ul class="menu bg-base-200 rounded-box">
+      <ul class="menu bg-base-200 rounded-box px-4">
         {menus.map(({ links, title }) => (
           <>
             <li>{title}</li>

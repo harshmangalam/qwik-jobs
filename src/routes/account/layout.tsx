@@ -5,7 +5,7 @@ export default component$(() => {
   return (
     <div>
       <Sidebar />
-      <main class="ml-80">
+      <main class="ml-80 p-6">
         <Slot />
       </main>
     </div>
