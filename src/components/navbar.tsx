@@ -35,6 +35,9 @@ export const Navbar = component$(() => {
             <li>
               <Link href="/job-alerts">Get job alerts</Link>
             </li>
+            <li>
+              <Link href="/post-a-job"> Post a job from $10</Link>
+            </li>
           </ul>
         </div>
         <Logo />
@@ -54,8 +57,11 @@ export const Navbar = component$(() => {
         <Link href="/post-a-job" class="btn btn-primary hidden md:flex">
           Post a job from $10
         </Link>
-        <Theme />
         <ProfileMenu />
+        <Link href="/login" class="btn btn-ghost">
+          Login
+        </Link>
+        <Theme />
       </div>
     </nav>
   );
