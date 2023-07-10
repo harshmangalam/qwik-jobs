@@ -3,8 +3,10 @@ import { Logo } from "./logo";
 import { Link } from "@builder.io/qwik-city";
 import { ProfileMenu } from "./profile-menu";
 import { Theme } from "./theme";
+import { useAuthSession } from "~/routes/plugin@auth";
 
 export const Navbar = component$(() => {
+  const session = useAuthSession();
   return (
     <nav class="navbar  shadow">
       <div class="navbar-start">
@@ -57,10 +59,16 @@ export const Navbar = component$(() => {
         <Link href="/post-a-job" class="btn btn-primary hidden md:flex">
           Post a job from $10
         </Link>
-        <ProfileMenu />
-        <Link href="/login" class="btn btn-ghost">
-          Login
-        </Link>
+        {session.value?.user ? (
+          <ProfileMenu
+            avatar={session.value.user.image}
+            name={session.value.user.name}
+          />
+        ) : (
+          <Link href="/login" class="btn btn-ghost">
+            Login
+          </Link>
+        )}
         <Theme />
       </div>
     </nav>
