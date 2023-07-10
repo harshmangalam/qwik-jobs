@@ -1,6 +1,21 @@
 import { component$ } from "@builder.io/qwik";
+import { Link } from "@builder.io/qwik-city";
 
 export const ProfileMenu = component$(() => {
+  const menus = [
+    {
+      name: "User profile",
+      link: "/account/user/",
+    },
+    {
+      name: "My jobs",
+      link: "/account/jobs/",
+    },
+    {
+      name: "My company",
+      link: "/account/company/",
+    },
+  ];
   return (
     <div class="dropdown dropdown-end">
       <label tabIndex={0} class="btn btn-ghost btn-circle avatar">
@@ -14,20 +29,13 @@ export const ProfileMenu = component$(() => {
       </label>
       <ul
         tabIndex={0}
-        class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+        class="menu dropdown-content mt-3 z-[1] bg-base-100 w-52"
       >
-        <li>
-          <a class="justify-between">
-            Profile
-            <span class="badge">New</span>
-          </a>
-        </li>
-        <li>
-          <a>Settings</a>
-        </li>
-        <li>
-          <a>Logout</a>
-        </li>
+        {menus.map(({ link, name }) => (
+          <li key={name}>
+            <Link href={link}>{name}</Link>
+          </li>
+        ))}
       </ul>
     </div>
   );
