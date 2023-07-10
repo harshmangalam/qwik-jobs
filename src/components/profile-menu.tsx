@@ -36,6 +36,9 @@ export const ProfileMenu = component$(() => {
             <Link href={link}>{name}</Link>
           </li>
         ))}
+        <li>
+          <button class="btn-ghost font-semibold">Logout</button>
+        </li>
       </ul>
     </div>
   );
