@@ -3,8 +3,10 @@ import { OauthLogin } from "../oauth-logins";
 import { Form, Link } from "@builder.io/qwik-city";
 import { TextInput } from "~/components/ui/data-input/text-input";
 import { Button } from "~/components/ui/actions/button";
+import { useAuthSignin } from "~/routes/plugin@auth";
 
 export default component$(() => {
+  const signIn = useAuthSignin();
   return (
     <div>
       <section class="text-center">
@@ -18,7 +20,7 @@ export default component$(() => {
       </section>
 
       <section class="mt-6">
-        <Form>
+        <Form action={signIn}>
           <TextInput type="email" label="Email" name="email" id="email" />
           <div class="flex flex-col gap-1">
             <TextInput
