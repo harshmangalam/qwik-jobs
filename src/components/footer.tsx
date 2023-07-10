@@ -1,6 +1,6 @@
 import { component$ } from "@builder.io/qwik";
 import { Logo } from "./logo";
-import { useLinks } from "~/routes/layout";
+import { useLinks } from "~/routes/(app)/layout";
 
 export const Footer = component$(() => {
   const links = useLinks();
