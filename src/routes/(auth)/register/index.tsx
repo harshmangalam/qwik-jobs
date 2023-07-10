@@ -9,27 +9,32 @@ export default component$(() => {
     <div>
       <section class="text-center">
         <div class="font-medium text-2xl lg:text-4xl mt-4 lg:mt-8">
-          Log in to your account
+          Hiring starts here
         </div>
-        <div class="mt-4  lg:text-lg">
-          Enter your credentials or use your favourite social provider to access
-        </div>
+        <div class="mt-4 lg:text-lg">Create an account and post a job!</div>
         <OauthLogin />
       </section>
 
       <section class="mt-6">
         <Form>
+          <TextInput type="text" label="Name" name="name" id="name" />
           <TextInput type="email" label="Email" name="email" id="email" />
-          <div class="flex flex-col gap-1">
-            <TextInput
-              type="password"
-              label="Password"
-              name="password"
-              id="password"
-            />
-            <Link href="/forgot-password" class="link text-sm self-end">
-              Forgot your password?
-            </Link>
+
+          <TextInput
+            type="password"
+            label="Password"
+            name="password"
+            id="password"
+          />
+
+          <TextInput
+            type="password"
+            label="Confirm your password"
+            name="confirmPassword"
+            id="confirmPassword"
+          />
+          <div>
+            <input type="checkbox" class="toggle" checked />
           </div>
           <div class="mt-4">
             <Button type="submit" fullWidth>
@@ -40,12 +45,12 @@ export default component$(() => {
       </section>
 
       <section class="mt-6 text-center">
-        Don't have an account?{" "}
+        Already have an account?{" "}
         <Link
-          href="/register"
+          href="/login"
           class="link font-semibold inline-flex items-center gap-1"
         >
-          <span> Register now</span>
+          <span>Login now</span>
           <iconify-icon
             width={24}
             height={24}
