@@ -1,5 +1,6 @@
 import { component$ } from "@builder.io/qwik";
 import { Link } from "@builder.io/qwik-city";
+import Signout from "./signout";
 
 export const ProfileMenu = component$(
   ({ avatar, name }: { avatar?: string | null; name?: string | null }) => {
@@ -40,9 +41,8 @@ export const ProfileMenu = component$(
               <Link href={link}>{name}</Link>
             </li>
           ))}
-          <li>
-            <button class="btn-ghost font-semibold">Logout</button>
-          </li>
+
+          <Signout />
         </ul>
       </div>
     );
