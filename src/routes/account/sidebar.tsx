@@ -15,7 +15,7 @@ export const Sidebar = component$(() => {
         {
           name: "Job postings",
           link: "/account/jobs/",
-          icon: "material-symbols:work",
+          icon: "gg:work-alt",
         },
       ],
     },
@@ -25,7 +25,7 @@ export const Sidebar = component$(() => {
         {
           name: "User settings",
           link: "/account/user/",
-          icon: "ri:user-settings-fill",
+          icon: "ph:user",
         },
       ],
     },
