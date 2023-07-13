@@ -6,7 +6,7 @@ import { TextInput } from "~/components/ui/data-input/text-input";
 
 export default component$(() => {
   return (
-    <div class="">
+    <div>
       <div class="font-medium text-3xl">Your company</div>
       <div class="mt-2">Configure your company information</div>
       <Form class="mt-8 grid grid-cols-1 gap-3">
