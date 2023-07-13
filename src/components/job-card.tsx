@@ -7,14 +7,6 @@ export const JobCard = component$(() => {
       href="/jobs/playpilot-2-senior-frontend-developer-clone"
       class="bg-base-100 transition-all group duration-200 ease-in-out hover:border-l-8 hover:ring-2 ring-primary hover:border-primary cursor-pointer relative  block border rounded-xl p-4  group  ring-brand-primary"
     >
-      <div class="absolute top-3 flex items-center gap-2 right-4 font-bold text-xs text-warning">
-        <iconify-icon
-          width={24}
-          height={24}
-          icon="material-symbols:star"
-        ></iconify-icon>{" "}
-        Featured
-      </div>
       <div class="flex flex-col justify-center md:flex-row md:justify-start md:items-center">
         <div class="flex items-center">
           <div class="overflow-hidden  w-12 h-12 md:w-12 md:h-12 rounded-xl shrink-0">

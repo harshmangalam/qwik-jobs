@@ -36,7 +36,7 @@ export default component$(() => {
       </section>
 
       <section class="bg-base-100 py-12">
-        <div class="container">
+        <div class="container mx-auto">
           <div class="max-w-3xl mx-auto text-center">
             <h2 class="text-5xl font-display font-bold">
               Hire <strong class="text-primary">Qwik developers</strong>
@@ -52,7 +52,7 @@ export default component$(() => {
               <Link href="post-a-job" class="btn btn-primary">
                 Post a job
               </Link>
-              <span> and hire Svelte developers </span>
+              <span> and hire Qwik developers </span>
             </div>
           </div>
         </div>
