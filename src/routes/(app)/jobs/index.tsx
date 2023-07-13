@@ -1,6 +1,5 @@
 import { component$ } from "@builder.io/qwik";
 import { JobCard } from "~/components/job-card";
-import { TwitterCard } from "~/components/twitter-card";
 
 export default component$(() => {
   return (
@@ -15,9 +14,7 @@ export default component$(() => {
             <JobCard />
           ))}
         </div>
-        <div class="col-span-12 md:col-span-4">
-          <TwitterCard />
-        </div>
+        `
       </div>
     </div>
   );

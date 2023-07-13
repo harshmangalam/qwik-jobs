@@ -8,7 +8,13 @@ export default component$(() => {
   return (
     <Form action={signOut} class="w-full mt-2">
       <input type="hidden" name="callbackUrl" value="/" />
-      <Button type="submit" fullWidth size="btn-sm" colorScheme="btn-error">
+      <Button
+        type="submit"
+        fullWidth
+        size="btn-sm"
+        colorScheme="btn-error"
+        outline
+      >
         Logout
       </Button>
     </Form>
