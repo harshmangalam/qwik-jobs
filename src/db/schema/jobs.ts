@@ -53,6 +53,7 @@ export const jobs = pgTable("jobs", {
   applyTarget: text("apply_text"),
   isFeatured: boolean("is_featured").default(false),
   payment: json("payment"),
+  isPaymentDone: boolean("is_payment_done").default(false),
   createdAt: timestamp("created_at"),
   updatedAt: timestamp("updated_at"),
 });
