@@ -1,8 +1,9 @@
-import type { Adapter, AdapterUser } from "@auth/core/adapters";
+import type { Adapter, AdapterAccount, AdapterUser } from "@auth/core/adapters";
 import { eq } from "drizzle-orm";
 import { type PostgresJsDatabase } from "drizzle-orm/postgres-js";
 import { accounts } from "~/db/schema/accounts";
 import { type NewUser, users } from "~/db/schema/users";
+import { type NewAccount } from "~/db/schema/accounts";
 import * as schema from "~/db/schema";
 export function DrizzleAdapter(db: PostgresJsDatabase<typeof schema>): Adapter {
   return {
@@ -48,11 +49,14 @@ export function DrizzleAdapter(db: PostgresJsDatabase<typeof schema>): Adapter {
       return data[0] as AdapterUser;
     },
     async linkAccount(account) {
-      return;
+      const data = await db
+        .insert(accounts)
+        .values(account as NewAccount)
+        .returning();
+
+      return data[0] as AdapterAccount;
     },
-    async unlinkAccount({ providerAccountId, provider }) {
-      return;
-    },
+    async unlinkAccount({ providerAccountId, provider }) {},
     async createSession({ sessionToken, userId, expires }) {
       return;
     },

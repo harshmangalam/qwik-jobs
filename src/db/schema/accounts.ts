@@ -1,5 +1,6 @@
 import { integer, pgTable, text, uuid } from "drizzle-orm/pg-core";
 import { users } from "./users";
+import { type InferModel } from "drizzle-orm";
 
 export const accounts = pgTable("accounts", {
   id: uuid("id").primaryKey(),
@@ -15,3 +16,6 @@ export const accounts = pgTable("accounts", {
   idToken: text("id_token"),
   sessionState: text("session_state"),
 });
+
+export type Account = InferModel<typeof accounts, "select">;
+export type NewAccount = InferModel<typeof accounts, "insert">;
