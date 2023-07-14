@@ -23,13 +23,11 @@ const experienceLevel = pgEnum("seniority_level", [
   "medium",
   "junior",
 ]);
-
 const employmentModel = pgEnum("employment_model", [
   "onsite",
   "remote",
   "hybrid",
 ]);
-
 const salaryTypeEnum = pgEnum("salary_type", [
   "hour",
   "day",
