@@ -1,10 +1,21 @@
-import type { Adapter, AdapterAccount, AdapterUser } from "@auth/core/adapters";
+import type {
+  Adapter,
+  AdapterAccount,
+  AdapterSession,
+  AdapterUser,
+  VerificationToken,
+} from "@auth/core/adapters";
 import { eq } from "drizzle-orm";
 import { type PostgresJsDatabase } from "drizzle-orm/postgres-js";
 import { accounts } from "~/db/schema/accounts";
 import { type NewUser, users } from "~/db/schema/users";
 import { type NewAccount } from "~/db/schema/accounts";
+import { sessions, type NewSession } from "~/db/schema/sessions";
 import * as schema from "~/db/schema";
+import {
+  type NewVerificationToken,
+  verificationTokens,
+} from "~/db/schema/verificationToken";
 export function DrizzleAdapter(db: PostgresJsDatabase<typeof schema>): Adapter {
   return {
     async createUser(user: Omit<AdapterUser, "id">) {
@@ -56,24 +67,51 @@ export function DrizzleAdapter(db: PostgresJsDatabase<typeof schema>): Adapter {
 
       return data[0] as AdapterAccount;
     },
-    async unlinkAccount({ providerAccountId, provider }) {},
-    async createSession({ sessionToken, userId, expires }) {
-      return;
+    async unlinkAccount({ providerAccountId }) {
+      const data = await db
+        .delete(accounts)
+        .where(eq(accounts.providerAccountId, providerAccountId))
+        .returning();
+      return data[0] as AdapterAccount;
     },
-    async getSessionAndUser(sessionToken) {
-      return;
+    async createSession(session) {
+      const data = await db.insert(sessions).values(session as NewSession);
+      return data[0] as AdapterSession;
     },
-    async updateSession({ sessionToken }) {
-      return;
+    async updateSession(session) {
+      const data = await db
+        .update(sessions)
+        .set(session)
+        .where(eq(sessions.sessionToken, session.sessionToken))
+        .returning();
+
+      return data[0] as AdapterSession;
     },
     async deleteSession(sessionToken) {
-      return;
+      const data = await db
+        .delete(sessions)
+        .where(eq(sessions.sessionToken, sessionToken))
+        .returning();
+
+      return data[0] as AdapterSession;
     },
-    async createVerificationToken({ identifier, expires, token }) {
-      return;
+    async createVerificationToken(verificationToken) {
+      const data = await db
+        .insert(verificationTokens)
+        .values(verificationToken as NewVerificationToken)
+        .returning();
+      return data[0] as VerificationToken;
     },
-    async useVerificationToken({ identifier, token }) {
-      return;
+    async useVerificationToken({ identifier }) {
+      try {
+        const data = await db
+          .delete(verificationTokens)
+          .where(eq(verificationTokens.identifier, identifier))
+          .returning();
+        return data[0] as VerificationToken;
+      } catch (error) {
+        return null;
+      }
     },
   };
 }
