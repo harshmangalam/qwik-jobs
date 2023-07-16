@@ -67,3 +67,20 @@ model Company {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
+
+model Job {
+  id              String   @id @default(cuid())
+  title           String
+  jobType         String
+  experienceLevel String
+  employmentModel String
+  locations       String[]
+  salary          Json
+  targetURL       String
+  description     String
+  workPermit      String
+  isFeatured      Boolean  @default(false)
+  payment         Json
+  reatedAt        DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
