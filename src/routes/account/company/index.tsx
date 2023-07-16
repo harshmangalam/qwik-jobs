@@ -28,7 +28,7 @@ export const useCompany = routeLoader$(async ({ sharedMap, error }) => {
 });
 export const useUpdateCompany = routeAction$(
   async (
-    { avatar, location, name, twitter, website, companyId },
+    { location, name, twitter, website, companyId },
     { error, redirect, sharedMap }
   ) => {
     try {
