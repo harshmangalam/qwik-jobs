@@ -13,10 +13,14 @@ export const TextInput = component$((props: TextInputProps) => {
       <label for={id} class="label">
         <span class="label-text">{label}</span>
       </label>
-      <input class="input input-bordered" id={id} {...inputProps} />
+      <input
+        class={["input input-bordered", { "input-error": error }]}
+        id={id}
+        {...inputProps}
+      />
       {error && (
         <label class="label">
-          <span class="label-text-alt text-error">Bottom Left label</span>
+          <span class="label-text-alt text-error">{error}</span>
         </label>
       )}
     </div>
