@@ -1,5 +1,6 @@
 import { component$ } from "@builder.io/qwik";
 import { RadioGroup } from "~/components/ui/data-input/radio-group";
+import { Textarea } from "~/components/ui/data-input/text-area";
 import { TextInput } from "~/components/ui/data-input/text-input";
 
 export default component$(() => {
@@ -52,6 +53,12 @@ export default component$(() => {
         <TextInput name="title" id="title" label="Title" />
         <RadioGroup name="workType" label="Work type" data={workType} />
         <RadioGroup name="workType" label="Experience level" data={expLevel} />
+        <Textarea
+          name="description"
+          label="Description"
+          id="description"
+          rows={6}
+        />
       </div>
     </div>
   );
