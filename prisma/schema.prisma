@@ -56,11 +56,11 @@ model VerificationToken {
 
 model Company {
   id        String   @id @default(cuid())
-  name      String
-  avatar    String
-  website   String
-  twitter   String
-  locations String[]
+  name      String?
+  avatar    String?
+  website   String?
+  twitter   String?
+  location  String?
   user      User     @relation(fields: [userId], references: [id])
   userId    String   @unique
   createdAt DateTime @default(now())

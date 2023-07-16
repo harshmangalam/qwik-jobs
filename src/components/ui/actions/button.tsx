@@ -30,7 +30,8 @@ export const Button = component$((props: ButtonProps) => {
       ]}
       {...buttonProps}
     >
-      {loading ? <span class={`loading loading-spinner`}></span> : <Slot />}
+      {loading && <span class={`loading loading-spinner`}></span>}
+      <Slot />
     </button>
   );
 });
