@@ -19,11 +19,11 @@ export const RadioGroup = component$((props: RadioGroupProps) => {
           <span class="label-text">{label}</span>
         </label>
       )}
-      <div class="join">
+      <div class="join flex">
         {data.map(({ label, value }) => (
           <input
             key={label}
-            class="join-item btn"
+            class="join-item btn flex-grow"
             type="radio"
             name={name}
             value={value}
