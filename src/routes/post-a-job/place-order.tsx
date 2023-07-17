@@ -2,6 +2,7 @@ import { type QRL, component$ } from "@builder.io/qwik";
 import { PageHeader } from "./page-header";
 import { PriceConditionCard } from "./price-condition-card";
 import { Button } from "~/components/ui/actions/button";
+import { Logo } from "~/components/logo";
 
 interface PlaceOrderProps {
   onTabChange: QRL<(tab: number) => {}>;
@@ -18,11 +19,6 @@ export const PlaceOrder = component$((props: PlaceOrderProps) => {
       subtitle:
         "Get your job delivered to our entire database of active job seekers.",
     },
-    {
-      title: "Published in the official Svelte.js discord",
-      subtitle:
-        "Get featured into the #jobs channel for the official Svelte discord with dozens of thousands of active users every day.",
-    },
 
     {
       title: "Shared in our social networks",
@@ -30,13 +26,16 @@ export const PlaceOrder = component$((props: PlaceOrderProps) => {
     },
   ];
   return (
-    <div class="grid grid-cols-12 h-full gap-6 divide-x">
-      <div class="col-span-8 h-full py-4 max-w-3xl mx-auto">
+    <div class="grid grid-cols-12 h-full gap-6 divide-x absolute inset-0">
+      <div class="col-span-12 lg:col-span-8 py-4 max-w-3xl mx-auto">
+        <div class="mb-8">
+          <Logo />
+        </div>
         <PageHeader
           title="Configure your opening"
           subtitle="Get more visibility with add-ons. Configure your opening with these optional add-ons:"
         />
-        <div class="grid grid-cols-2 gap-6 mt-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
           <div class="card card-bordered shadow bg-base-200">
             <div class="card-body">
               <div class="card-title">
@@ -96,7 +95,7 @@ export const PlaceOrder = component$((props: PlaceOrderProps) => {
             </ul>
           </div>
         </div>
-        <div class="mt-4">
+        <div class="mt-8">
           <button onClick$={() => onTabChange(2)} class="btn">
             <iconify-icon
               width={24}
@@ -108,43 +107,51 @@ export const PlaceOrder = component$((props: PlaceOrderProps) => {
         </div>
       </div>
 
-      <div class="col-span-4  h-full py-4 flex flex-col justify-between  px-8 bg-base-200">
-        <div>
-          <article class="card bg-base-100 card-compact shadow card-bordered">
-            <div class="card-body">
-              <div class="card-title">
-                <div class="form-control w-full">
-                  <label class="cursor-pointer label items-start">
-                    <span class="label-text font-bold text-lg">
-                      Renew your opening
-                    </span>
-                    <div>
-                      <input
-                        type="checkbox"
-                        class="toggle toggle-primary"
-                        checked
-                      />
-                    </div>
-                  </label>
+      <div class="col-span-12 h-full lg:col-span-4 py-4 px-8 bg-base-200">
+        <div class="max-w-3xl mx-auto h-full flex flex-col justify-between  ">
+          <div>
+            <article class="card bg-base-100 card-compact shadow card-bordered">
+              <div class="card-body">
+                <div class="card-title">
+                  <div class="form-control w-full">
+                    <label class="cursor-pointer label items-start">
+                      <span class="label-text font-bold text-lg">
+                        Renew your opening
+                      </span>
+                      <div>
+                        <input
+                          type="checkbox"
+                          class="toggle toggle-primary"
+                          checked
+                        />
+                      </div>
+                    </label>
+                  </div>
                 </div>
+                <div class="font-semibold">Get 20% off when you subscribe.</div>
+                <p>
+                  Renew your job automatically every month. Bring it to the top
+                  of the list and get promoted again. Cancel anytime after 2nd
+                  month.
+                </p>
               </div>
-              <div class="font-semibold">Get 20% off when you subscribe.</div>
-              <p>
-                Renew your job automatically every month. Bring it to the top of
-                the list and get promoted again. Cancel anytime after 2nd month.
-              </p>
-            </div>
-          </article>
-        </div>
-        <div class="mt-8">
-          <Button size="btn-lg" fullWidth colorScheme="btn-primary">
-            Post my job for $20
-          </Button>
+            </article>
+          </div>
+          <div class="mt-8">
+            <Button
+              type="submit"
+              size="btn-lg"
+              fullWidth
+              colorScheme="btn-primary"
+            >
+              Post my job for $20
+            </Button>
 
-          <p class="text-xs prose mt-4">
-            You’ll be redirected to Stripe to checkout with creditcard. Prefer a
-            different payment method or need a PO? Contact us.
-          </p>
+            <p class="text-xs prose mt-4">
+              You’ll be redirected to Stripe to checkout with creditcard. Prefer
+              a different payment method or need a PO? Contact us.
+            </p>
+          </div>
         </div>
       </div>
     </div>

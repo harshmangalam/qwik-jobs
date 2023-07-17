@@ -1,5 +1,6 @@
 import { type QRL, component$ } from "@builder.io/qwik";
 import { ImageUpload } from "~/components/image-upload";
+import { Logo } from "~/components/logo";
 import { TextInput } from "~/components/ui/data-input/text-input";
 
 interface CompanyInfoProps {
@@ -8,7 +9,10 @@ interface CompanyInfoProps {
 export const CompanyInfo = component$((props: CompanyInfoProps) => {
   const { onTabChange } = props;
   return (
-    <div class="container max-w-3xl mx-auto py-8">
+    <div class="container max-w-2xl w-full mx-auto py-8">
+      <div class="mb-8">
+        <Logo />
+      </div>
       <div class="font-semibold text-2xl font-display">
         Let's begin with your company information
       </div>
@@ -46,7 +50,11 @@ export const CompanyInfo = component$((props: CompanyInfoProps) => {
       </div>
 
       <div class="mt-8 flex justify-end">
-        <button onClick$={() => onTabChange(2)} class="btn btn-primary">
+        <button
+          type="button"
+          onClick$={() => onTabChange(2)}
+          class="btn btn-primary"
+        >
           Next
           <iconify-icon
             width={24}
