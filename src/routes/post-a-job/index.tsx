@@ -24,7 +24,7 @@ export default component$(() => {
   ];
   return (
     <div class="divide-y w-full min-h-screen h-full flex flex-col">
-      <nav class="navbar">
+      <nav class="navbar sticky top-0 bg-base-100 shadow">
         <div>
           <Logo />
         </div>
@@ -42,7 +42,7 @@ export default component$(() => {
           <CompanyInfo onTabChange={handleChangeTab} />
         )}
         {currentTab.value === 2 && <JobInfo onTabChange={handleChangeTab} />}
-        {currentTab.value === 3 && <PlaceOrder />}
+        {currentTab.value === 3 && <PlaceOrder onTabChange={handleChangeTab} />}
       </Form>
     </div>
   );

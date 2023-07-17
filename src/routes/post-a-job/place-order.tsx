@@ -1,9 +1,13 @@
-import { component$ } from "@builder.io/qwik";
+import { type QRL, component$ } from "@builder.io/qwik";
 import { PageHeader } from "./page-header";
 import { PriceConditionCard } from "./price-condition-card";
 import { Button } from "~/components/ui/actions/button";
 
-export const PlaceOrder = component$(() => {
+interface PlaceOrderProps {
+  onTabChange: QRL<(tab: number) => {}>;
+}
+export const PlaceOrder = component$((props: PlaceOrderProps) => {
+  const { onTabChange } = props;
   const postingConditions = [
     {
       title: "Active for 30 days",
@@ -92,6 +96,16 @@ export const PlaceOrder = component$(() => {
             </ul>
           </div>
         </div>
+        <div class="mt-4">
+          <button onClick$={() => onTabChange(2)} class="btn">
+            <iconify-icon
+              width={24}
+              height={24}
+              icon="formkit:arrowleft"
+            ></iconify-icon>
+            Prev
+          </button>
+        </div>
       </div>
 
       <div class="col-span-4  h-full py-4 flex flex-col justify-between  px-8 bg-base-200">
@@ -126,6 +140,7 @@ export const PlaceOrder = component$(() => {
           <Button size="btn-lg" fullWidth colorScheme="btn-primary">
             Post my job for $20
           </Button>
+
           <p class="text-xs prose mt-4">
             You’ll be redirected to Stripe to checkout with creditcard. Prefer a
             different payment method or need a PO? Contact us.
