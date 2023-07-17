@@ -38,7 +38,7 @@ export default component$(() => {
     },
   ];
   return (
-    <div>
+    <div class="container max-w-3xl mx-auto py-8">
       <div>
         <div class="font-semibold text-2xl font-display">
           Describe your opening

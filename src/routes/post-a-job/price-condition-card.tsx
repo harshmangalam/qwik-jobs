@@ -11,7 +11,7 @@ export const PriceConditionCard = component$(
     price: string;
   }) => {
     return (
-      <article class="card">
+      <article class="card card-compact shadow card-bordered">
         <div class="card-body">
           <div class="card-title">
             <div class="form-control w-full">

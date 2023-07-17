@@ -59,7 +59,7 @@ export const ImageUpload = component$((props: ImageUploadProps) => {
 
       <button
         onClick$={() => inputRef.value?.click()}
-        class="border border-dashed p-2  w-full rounded-lg flex items-center gap-4"
+        class="border border-dashed border-primary p-2  w-full rounded-lg flex items-center gap-4"
       >
         <div class="w-20 h-20">
           {preview.value ? (

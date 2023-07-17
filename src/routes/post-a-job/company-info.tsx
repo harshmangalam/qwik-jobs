@@ -1,10 +1,14 @@
-import { component$ } from "@builder.io/qwik";
+import { type QRL, component$ } from "@builder.io/qwik";
 import { ImageUpload } from "~/components/image-upload";
 import { TextInput } from "~/components/ui/data-input/text-input";
 
-export const CompanyInfo = component$(() => {
+interface CompanyInfoProps {
+  onChangeTab: QRL<(tab: number) => {}>;
+}
+export const CompanyInfo = component$((props: CompanyInfoProps) => {
+  const { onChangeTab } = props;
   return (
-    <div>
+    <div class="container max-w-3xl mx-auto py-8">
       <div class="font-semibold text-2xl font-display">
         Let's begin with your company information
       </div>
@@ -39,6 +43,17 @@ export const CompanyInfo = component$(() => {
           label="Location"
           placeholder="Add location"
         />
+      </div>
+
+      <div class="mt-8 flex justify-end">
+        <button onClick$={() => onChangeTab(2)} class="btn btn-primary">
+          Next
+          <iconify-icon
+            width={24}
+            height={24}
+            icon="formkit:arrowright"
+          ></iconify-icon>
+        </button>
       </div>
     </div>
   );

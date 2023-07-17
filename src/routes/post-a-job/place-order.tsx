@@ -1,5 +1,7 @@
 import { component$ } from "@builder.io/qwik";
 import { PageHeader } from "./page-header";
+import { PriceConditionCard } from "./price-condition-card";
+import { Button } from "~/components/ui/actions/button";
 
 export const PlaceOrder = component$(() => {
   const postingConditions = [
@@ -24,14 +26,14 @@ export const PlaceOrder = component$(() => {
     },
   ];
   return (
-    <div class="grid grid-cols-12 h-full">
-      <div class="col-span-8 h-full">
+    <div class="grid grid-cols-12 h-full gap-6 divide-x">
+      <div class="col-span-8 h-full py-4 max-w-3xl mx-auto">
         <PageHeader
           title="Configure your opening"
           subtitle="Get more visibility with add-ons. Configure your opening with these optional add-ons:"
         />
-        <div class="grid grid-cols-2 gap-6 mt-4">
-          <div class="card bg-base-200">
+        <div class="grid grid-cols-2 gap-6 mt-8">
+          <div class="card card-bordered shadow bg-base-200">
             <div class="card-body">
               <div class="card-title">
                 <div class="form-control w-full">
@@ -51,7 +53,7 @@ export const PlaceOrder = component$(() => {
                 </div>
               </div>
 
-              <ul class="flex flex-col gap-y-2">
+              <ul class="flex flex-col gap-y-4">
                 {postingConditions.map(({ subtitle, title }, i) => (
                   <li key={i}>
                     <div class="flex gap-3">
@@ -74,10 +76,62 @@ export const PlaceOrder = component$(() => {
               </ul>
             </div>
           </div>
+
+          <div>
+            <ul class="flex flex-col gap-y-4">
+              <PriceConditionCard
+                title="Bring to top after 14 days"
+                description="Place the job on the top of the list again after 14 days"
+                price="$5.00"
+              />
+              <PriceConditionCard
+                title="Featured job post"
+                description="Feature your opening in highlight and get more visibility"
+                price="$7.00"
+              />
+            </ul>
+          </div>
         </div>
       </div>
 
-      <div class="col-span-4  h-full"></div>
+      <div class="col-span-4  h-full py-4 flex flex-col justify-between  px-8 bg-base-200">
+        <div>
+          <article class="card bg-base-100 card-compact shadow card-bordered">
+            <div class="card-body">
+              <div class="card-title">
+                <div class="form-control w-full">
+                  <label class="cursor-pointer label items-start">
+                    <span class="label-text font-bold text-lg">
+                      Renew your opening
+                    </span>
+                    <div>
+                      <input
+                        type="checkbox"
+                        class="toggle toggle-primary"
+                        checked
+                      />
+                    </div>
+                  </label>
+                </div>
+              </div>
+              <div class="font-semibold">Get 20% off when you subscribe.</div>
+              <p>
+                Renew your job automatically every month. Bring it to the top of
+                the list and get promoted again. Cancel anytime after 2nd month.
+              </p>
+            </div>
+          </article>
+        </div>
+        <div class="mt-8">
+          <Button size="btn-lg" fullWidth colorScheme="btn-primary">
+            Post my job for $20
+          </Button>
+          <p class="text-xs prose mt-4">
+            You’ll be redirected to Stripe to checkout with creditcard. Prefer a
+            different payment method or need a PO? Contact us.
+          </p>
+        </div>
+      </div>
     </div>
   );
 });
