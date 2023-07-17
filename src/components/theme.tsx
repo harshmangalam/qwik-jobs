@@ -1,4 +1,4 @@
-import { $, component$, useVisibleTask$ } from "@builder.io/qwik";
+import { $, component$ } from "@builder.io/qwik";
 
 export const Theme = component$(() => {
   const themes = [
@@ -18,11 +18,6 @@ export const Theme = component$(() => {
     "night",
     "coffee",
   ];
-
-  useVisibleTask$(() => {
-    const theme = localStorage.getItem("theme");
-    document.documentElement.setAttribute("data-theme", theme ?? "cupcake");
-  });
 
   const handleApplyTheme = $((theme: string) => {
     document.documentElement.setAttribute("data-theme", theme);
