@@ -35,15 +35,18 @@ export const PlaceOrder = component$(() => {
             <div class="card-body">
               <div class="card-title">
                 <div class="form-control w-full">
-                  <label class="cursor-pointer label">
+                  <label class="cursor-pointer label items-start">
                     <span class="label-text font-bold text-lg">
                       Base posting
                     </span>
-                    <input
-                      type="checkbox"
-                      class="toggle toggle-primary"
-                      checked
-                    />
+                    <div>
+                      <input
+                        type="checkbox"
+                        class="toggle toggle-primary"
+                        checked
+                      />
+                      <div class="font-bold text-sm">$10.00</div>
+                    </div>
                   </label>
                 </div>
               </div>
