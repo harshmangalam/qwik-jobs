@@ -1,7 +1,7 @@
 import { component$, Slot } from "@builder.io/qwik";
 import { routeLoader$, type RequestHandler } from "@builder.io/qwik-city";
 import { Footer } from "~/components/footer";
-import { Navbar } from "~/components/navbar";
+import { Navbar } from "./navbar";
 
 export const useLinks = routeLoader$(() => {
   const links = [

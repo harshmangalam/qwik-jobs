@@ -1,8 +1,8 @@
 import { component$ } from "@builder.io/qwik";
-import { Logo } from "./logo";
+import { Logo } from "~/components/logo";
 import { Link } from "@builder.io/qwik-city";
-import { ProfileMenu } from "./profile-menu";
-import { Theme } from "./theme";
+import { ProfileMenu } from "~/components/profile-menu";
+import { Theme } from "~/components/theme";
 import { useAuthSession } from "~/routes/plugin@auth";
 
 export const Navbar = component$(() => {
