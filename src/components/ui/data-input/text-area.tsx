@@ -14,7 +14,10 @@ export const Textarea = component$((props: TextareaProps) => {
         <span class="label-text">{label}</span>
       </label>
       <textarea
-        class={["textarea textarea-bordered", { "textarea-error": error }]}
+        class={[
+          "textarea textarea-bordered textarea-primary",
+          { "textarea-error": error },
+        ]}
         id={id}
         {...textareaProps}
       />
