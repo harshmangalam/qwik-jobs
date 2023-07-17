@@ -39,9 +39,9 @@ export default component$(() => {
       </nav>
       <Form class="grid grid-cols-1 gap-3 flex-1">
         {currentTab.value === 1 && (
-          <CompanyInfo onChangeTab={handleChangeTab} />
+          <CompanyInfo onTabChange={handleChangeTab} />
         )}
-        {currentTab.value === 2 && <JobInfo />}
+        {currentTab.value === 2 && <JobInfo onTabChange={handleChangeTab} />}
         {currentTab.value === 3 && <PlaceOrder />}
       </Form>
     </div>

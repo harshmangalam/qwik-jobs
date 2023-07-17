@@ -3,10 +3,10 @@ import { ImageUpload } from "~/components/image-upload";
 import { TextInput } from "~/components/ui/data-input/text-input";
 
 interface CompanyInfoProps {
-  onChangeTab: QRL<(tab: number) => {}>;
+  onTabChange: QRL<(tab: number) => {}>;
 }
 export const CompanyInfo = component$((props: CompanyInfoProps) => {
-  const { onChangeTab } = props;
+  const { onTabChange } = props;
   return (
     <div class="container max-w-3xl mx-auto py-8">
       <div class="font-semibold text-2xl font-display">
@@ -46,7 +46,7 @@ export const CompanyInfo = component$((props: CompanyInfoProps) => {
       </div>
 
       <div class="mt-8 flex justify-end">
-        <button onClick$={() => onChangeTab(2)} class="btn btn-primary">
+        <button onClick$={() => onTabChange(2)} class="btn btn-primary">
           Next
           <iconify-icon
             width={24}

@@ -1,9 +1,13 @@
-import { component$ } from "@builder.io/qwik";
+import { type QRL, component$ } from "@builder.io/qwik";
 import { RadioGroup } from "~/components/ui/data-input/radio-group";
 import { Textarea } from "~/components/ui/data-input/text-area";
 import { TextInput } from "~/components/ui/data-input/text-input";
 
-export default component$(() => {
+interface JobInfoProps {
+  onTabChange: QRL<(tab: number) => {}>;
+}
+export default component$((props: JobInfoProps) => {
+  const { onTabChange } = props;
   const workType = [
     {
       label: "Full-time",
@@ -59,6 +63,24 @@ export default component$(() => {
           id="description"
           rows={6}
         />
+      </div>
+      <div class="mt-8 flex justify-end gap-4">
+        <button onClick$={() => onTabChange(1)} class="btn">
+          <iconify-icon
+            width={24}
+            height={24}
+            icon="formkit:arrowleft"
+          ></iconify-icon>
+          Prev
+        </button>
+        <button onClick$={() => onTabChange(3)} class="btn btn-primary">
+          Next
+          <iconify-icon
+            width={24}
+            height={24}
+            icon="formkit:arrowright"
+          ></iconify-icon>
+        </button>
       </div>
     </div>
   );
