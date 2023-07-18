@@ -10,8 +10,8 @@ export default component$(() => {
       </p>
       <div class="grid grid-cols-1 gap-4 mt-8">
         <div class="flex flex-col gap-4">
-          {[...new Array(4)].map(() => (
-            <JobCard />
+          {[...new Array(4)].map((_, i) => (
+            <JobCard key={i} />
           ))}
         </div>
         `

@@ -1,5 +1,5 @@
 import { $, component$, useSignal } from "@builder.io/qwik";
-import { Form, routeLoader$ } from "@builder.io/qwik-city";
+import { Form, routeAction$, routeLoader$ } from "@builder.io/qwik-city";
 import { CompanyInfo } from "./company-info";
 import JobInfo from "./job-info";
 import { PlaceOrder } from "./place-order";
@@ -22,6 +22,8 @@ export const useCompany = routeLoader$(async ({ redirect, sharedMap }) => {
 
   return user?.company;
 });
+
+export const useCreateJob = routeAction$(() => {});
 export default component$(() => {
   const company = useCompany();
   const currentTab = useSignal(company.value ? 2 : 1);

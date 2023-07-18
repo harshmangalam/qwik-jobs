@@ -3,11 +3,13 @@ import { Logo } from "~/components/logo";
 import { RadioGroup } from "~/components/ui/data-input/radio-group";
 import { Textarea } from "~/components/ui/data-input/text-area";
 import { TextInput } from "~/components/ui/data-input/text-input";
+import { useCompany } from ".";
 
 interface JobInfoProps {
   onTabChange: QRL<(tab: number) => {}>;
 }
 export default component$((props: JobInfoProps) => {
+  const company = useCompany();
   const { onTabChange } = props;
   const workType = [
     {
@@ -57,7 +59,17 @@ export default component$((props: JobInfoProps) => {
         </div>
       </div>
 
-      <div>
+      <div class="mt-4">
+        {company.value && (
+          <TextInput
+            name="company"
+            id="company"
+            label="Company"
+            disabled
+            value={company.value.name}
+          />
+        )}
+
         <TextInput name="title" id="title" label="Title" />
         <RadioGroup name="workType" label="Work type" data={workType} />
         <RadioGroup
@@ -73,14 +85,16 @@ export default component$((props: JobInfoProps) => {
         />
       </div>
       <div class="mt-8 flex justify-end gap-4">
-        <button type="button" onClick$={() => onTabChange(1)} class="btn">
-          <iconify-icon
-            width={24}
-            height={24}
-            icon="formkit:arrowleft"
-          ></iconify-icon>
-          Prev
-        </button>
+        {!company.value && (
+          <button type="button" onClick$={() => onTabChange(1)} class="btn">
+            <iconify-icon
+              width={24}
+              height={24}
+              icon="formkit:arrowleft"
+            ></iconify-icon>
+            Prev
+          </button>
+        )}
         <button
           type="button"
           onClick$={() => onTabChange(3)}

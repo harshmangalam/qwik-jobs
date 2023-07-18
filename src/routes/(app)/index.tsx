@@ -19,8 +19,8 @@ export default component$(() => {
           </div>
           <h4 class="mt-8 uppercase text-sm mb-4"> Trusted by: </h4>
           <div class="flex flex-wrap justify-center items-center gap-x-2 md:gap-x-8 gap-y-4 mt-2">
-            {[...new Array(4)].map((_) => (
-              <Company />
+            {[...new Array(4)].map((_, i) => (
+              <Company key={i} />
             ))}
           </div>
         </div>
@@ -29,8 +29,8 @@ export default component$(() => {
       <section class="bg-base-100 py-12 container mx-auto">
         <div class="text-xl font-bold text-center mb-4">Lastest Qwik Jobs</div>
         <div class="grid grid-cols-1 gap-4 max-w-3xl mx-auto">
-          {[...new Array(4)].map((job) => (
-            <JobCard />
+          {[...new Array(4)].map((_, i) => (
+            <JobCard key={i} />
           ))}
         </div>
       </section>
