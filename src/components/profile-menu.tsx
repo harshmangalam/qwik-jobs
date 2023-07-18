@@ -34,7 +34,7 @@ export const ProfileMenu = component$(
         </label>
         <ul
           tabIndex={0}
-          class="menu dropdown-content mt-3 z-[1] bg-base-100 w-52"
+          class="menu dropdown-content mt-4 z-[1] bg-base-100 w-52 rounded-box shadow"
         >
           {menus.map(({ link, name }) => (
             <li key={name}>

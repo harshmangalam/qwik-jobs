@@ -26,7 +26,7 @@ export const Theme = component$(() => {
 
   return (
     <div class="dropdown dropdown-end">
-      <label tabIndex={0} class="btn btn-ghost">
+      <label tabIndex={0} class="btn btn-ghost btn-circle">
         <iconify-icon
           width={20}
           height={20}
@@ -35,7 +35,7 @@ export const Theme = component$(() => {
       </label>
       <ul
         tabIndex={0}
-        class="dropdown-content menu p-2  bg-base-100 rounded-box w-52 shadow"
+        class="dropdown-content menu mt-4 p-2  bg-base-100 rounded-box w-52 shadow"
       >
         {themes.map((theme) => (
           <li key={theme}>

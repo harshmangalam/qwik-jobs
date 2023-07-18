@@ -61,7 +61,7 @@ model Company {
   avatar    String?
   website   String?
   twitter   String?
-  location  String?
+  locations String[]
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId    String   @unique
   createdAt DateTime @default(now())
