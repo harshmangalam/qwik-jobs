@@ -28,7 +28,7 @@ export const useCompany = routeLoader$(async ({ sharedMap, error }) => {
 });
 export const useUpdateCompany = routeAction$(
   async (
-    { location, name, twitter, website, companyId },
+    { locations, name, twitter, website, companyId },
     { error, redirect, sharedMap }
   ) => {
     try {
@@ -61,7 +61,7 @@ export const useUpdateCompany = routeAction$(
             website,
             name,
             twitter,
-            location,
+            locations: locations.split(","),
             userId: user.id,
           },
         });
@@ -72,7 +72,7 @@ export const useUpdateCompany = routeAction$(
             id: companyId,
           },
           data: {
-            location,
+            locations: locations.split(","),
             name,
             twitter,
             website,
@@ -91,7 +91,7 @@ export const useUpdateCompany = routeAction$(
     avatar: z.instanceof(File),
     website: z.string(),
     twitter: z.string(),
-    location: z.string(),
+    locations: z.string(),
     companyId: z.string().optional(),
   })
 );
@@ -129,11 +129,11 @@ export default component$(() => {
           />
         </div>
         <TextInput
-          name="location"
-          id="location"
-          label="Location"
-          placeholder="Add location"
-          value={company.value?.location ?? ""}
+          name="locations"
+          id="locations"
+          label="Locations (seperate by comma)"
+          placeholder="Add locations"
+          value={company.value?.locations ?? ""}
         />
         <div class="flex justify-center pt-8">
           <Button
