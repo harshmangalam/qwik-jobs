@@ -1,6 +1,6 @@
 import { component$ } from "@builder.io/qwik";
-import { Link } from "@builder.io/qwik-city";
 import { Logo } from "~/components/logo";
+import { MenuItem } from "./menu-item";
 
 export const Sidebar = component$(() => {
   const menus = [
@@ -38,21 +38,12 @@ export const Sidebar = component$(() => {
       <div class="mb-4 p-4">
         <Logo />
       </div>
-      <ul class="menu bg-base-200 rounded-box px-4">
+      <ul class="menu bg-base-200 rounded-box px-4 flex flex-col gap-y-2">
         {menus.map(({ links, title }) => (
           <>
             <li>{title}</li>
-            {links.map(({ icon, link, name }) => (
-              <li key={name}>
-                <Link href={link}>
-                  <iconify-icon
-                    icon={icon}
-                    width={24}
-                    height={24}
-                  ></iconify-icon>
-                  {name}
-                </Link>
-              </li>
+            {links.map((link) => (
+              <MenuItem {...link} key={link.name} />
             ))}
           </>
         ))}
