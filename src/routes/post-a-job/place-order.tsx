@@ -1,4 +1,4 @@
-import { type QRL, component$, useSignal } from "@builder.io/qwik";
+import { type QRL, component$, useSignal, $ } from "@builder.io/qwik";
 import { PageHeader } from "./page-header";
 import { PriceConditionCard } from "./price-condition-card";
 import { Button } from "~/components/ui/actions/button";
@@ -14,6 +14,11 @@ export const PlaceOrder = component$((props: PlaceOrderProps) => {
   const price = useSignal(10);
   const bringToTop = useSignal(false);
   const isFeatured = useSignal(false);
+  const monthlyRenew = useSignal(false);
+
+  const handleChangeMonthlyRenew = $(() => {
+    monthlyRenew.value = !monthlyRenew.value;
+  });
 
   return (
     <div class="grid grid-cols-12 h-full gap-6 divide-x absolute inset-0">
@@ -56,7 +61,10 @@ export const PlaceOrder = component$((props: PlaceOrderProps) => {
 
       <div class="col-span-12 h-full lg:col-span-4 py-4 px-8 bg-base-200">
         <div class="max-w-3xl mx-auto h-full flex flex-col justify-between  ">
-          <RenewCard />
+          <RenewCard
+            value={monthlyRenew.value}
+            onChange={handleChangeMonthlyRenew}
+          />
           <div class="mt-8">
             <Button
               type="submit"
