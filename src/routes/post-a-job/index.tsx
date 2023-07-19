@@ -30,8 +30,31 @@ export const useCompany = routeLoader$(async ({ redirect, sharedMap }) => {
 });
 
 export const useCreateJob = routeAction$(
-  (formData) => {
-    console.log(formData);
+  async (formData, { redirect }) => {
+    const {
+      salaryCurrency,
+      salaryRangeTo,
+      salaryPeriod,
+      salaryRangeFrom,
+      locations,
+      isFeatured,
+      bringToTop,
+      monthlyRenew,
+      ...rest
+    } = formData;
+    await prisma.job.create({
+      data: {
+        ...rest,
+        locations: locations.split(","),
+        salary: {
+          salaryRangeFrom,
+          salaryRangeTo,
+          salaryCurrency,
+          salaryPeriod,
+        },
+      },
+    });
+    throw redirect(303, "/account/jobs");
   },
   zod$({
     title: z.string().nonempty(),
