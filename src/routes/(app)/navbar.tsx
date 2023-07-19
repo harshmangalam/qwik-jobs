@@ -4,9 +4,20 @@ import { Link } from "@builder.io/qwik-city";
 import { ProfileMenu } from "~/components/profile-menu";
 import { Theme } from "~/components/theme";
 import { useAuthSession } from "~/routes/plugin@auth";
+import { NavLink } from "./nav-link";
 
 export const Navbar = component$(() => {
   const session = useAuthSession();
+  const links = [
+    {
+      name: "Browse jobs",
+      href: "/jobs/",
+    },
+    {
+      name: "Get job alerts",
+      href: "/job-alerts/",
+    },
+  ];
   return (
     <nav class="navbar  shadow">
       <div class="navbar-start">
@@ -31,12 +42,10 @@ export const Navbar = component$(() => {
             tabIndex={0}
             class="menu dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
           >
-            <li>
-              <Link href="/jobs">Browse jobs</Link>
-            </li>
-            <li>
-              <Link href="/job-alerts">Get job alerts</Link>
-            </li>
+            {links.map((link) => (
+              <NavLink key={link.name} {...link} />
+            ))}
+
             <li>
               <Link href="/post-a-job"> Post a job from $10</Link>
             </li>
@@ -45,13 +54,10 @@ export const Navbar = component$(() => {
         <Logo />
       </div>
       <div class="navbar-center hidden lg:flex">
-        <ul class="menu menu-md menu-horizontal px-1">
-          <li>
-            <Link href="/jobs">Browse jobs</Link>
-          </li>
-          <li>
-            <Link href="/job-alerts">Get job alerts</Link>
-          </li>
+        <ul class="menu menu-md menu-horizontal px-1 gap-2">
+          {links.map((link) => (
+            <NavLink key={link.name} {...link} />
+          ))}
         </ul>
       </div>
 
