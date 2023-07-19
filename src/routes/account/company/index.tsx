@@ -88,7 +88,7 @@ export const useUpdateCompany = routeAction$(
   },
   zod$({
     name: z.string(),
-    avatar: z.instanceof(File),
+    avatar: z.any(),
     website: z.string(),
     twitter: z.string(),
     locations: z.string(),
