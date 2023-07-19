@@ -11,13 +11,25 @@ interface PlaceOrderProps {
 }
 export const PlaceOrder = component$((props: PlaceOrderProps) => {
   const { onTabChange } = props;
-  const price = useSignal(10);
+  const basePrice = 10;
+  const price = useSignal(basePrice);
   const bringToTop = useSignal(false);
   const isFeatured = useSignal(false);
   const monthlyRenew = useSignal(false);
 
+  const handleIsFeaturedChange = $(() => {
+    isFeatured.value = !isFeatured.value;
+    price.value = isFeatured.value ? price.value + 6 : price.value - 6;
+  });
+  const handleBringToTopChange = $(() => {
+    bringToTop.value = !bringToTop.value;
+    price.value = bringToTop.value ? price.value + 4 : price.value - 4;
+  });
   const handleChangeMonthlyRenew = $(() => {
     monthlyRenew.value = !monthlyRenew.value;
+    price.value = monthlyRenew.value
+      ? price.value - basePrice * (20 / 100)
+      : price.value + basePrice * (20 / 100);
   });
 
   return (
@@ -30,6 +42,7 @@ export const PlaceOrder = component$((props: PlaceOrderProps) => {
           title="Configure your opening"
           subtitle="Get more visibility with add-ons. Configure your opening with these optional add-ons:"
         />
+        <input type="hidden" name="price" value={price.value} />
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
           <BasePriceCard />
           <div>
@@ -38,11 +51,15 @@ export const PlaceOrder = component$((props: PlaceOrderProps) => {
                 title="Bring to top after 14 days"
                 description="Place the job on the top of the list again after 14 days"
                 price="$5.00"
+                value={bringToTop.value}
+                onChange={handleBringToTopChange}
               />
               <PriceConditionCard
                 title="Featured job post"
                 description="Feature your opening in highlight and get more visibility"
                 price="$7.00"
+                value={isFeatured.value}
+                onChange={handleIsFeaturedChange}
               />
             </ul>
           </div>

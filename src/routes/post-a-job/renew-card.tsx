@@ -29,7 +29,9 @@ export const RenewCard = component$(
               </label>
             </div>
           </div>
-          <div class="font-semibold">Get 20% off when you subscribe.</div>
+          <div class="font-semibold">
+            Get 20% off on base price when you subscribe.
+          </div>
           <p>
             Renew your job automatically every month. Bring it to the top of the
             list and get promoted again. Cancel anytime after 2nd month.
