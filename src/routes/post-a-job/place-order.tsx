@@ -4,6 +4,7 @@ import { PriceConditionCard } from "./price-condition-card";
 import { Button } from "~/components/ui/actions/button";
 import { Logo } from "~/components/logo";
 import { BasePriceCard } from "./base-price-card";
+import { RenewCard } from "./renew-card";
 
 interface PlaceOrderProps {
   onTabChange: QRL<(tab: number) => {}>;
@@ -55,34 +56,7 @@ export const PlaceOrder = component$((props: PlaceOrderProps) => {
 
       <div class="col-span-12 h-full lg:col-span-4 py-4 px-8 bg-base-200">
         <div class="max-w-3xl mx-auto h-full flex flex-col justify-between  ">
-          <div>
-            <article class="card bg-base-100 card-compact shadow card-bordered">
-              <div class="card-body">
-                <div class="card-title">
-                  <div class="form-control w-full">
-                    <label class="cursor-pointer label items-start">
-                      <span class="label-text font-bold text-lg">
-                        Renew your opening
-                      </span>
-                      <div>
-                        <input
-                          type="checkbox"
-                          class="toggle toggle-primary"
-                          checked
-                        />
-                      </div>
-                    </label>
-                  </div>
-                </div>
-                <div class="font-semibold">Get 20% off when you subscribe.</div>
-                <p>
-                  Renew your job automatically every month. Bring it to the top
-                  of the list and get promoted again. Cancel anytime after 2nd
-                  month.
-                </p>
-              </div>
-            </article>
-          </div>
+          <RenewCard />
           <div class="mt-8">
             <Button
               type="submit"
