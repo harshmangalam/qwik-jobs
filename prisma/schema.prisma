@@ -78,11 +78,10 @@ model Job {
   salary          Json
   targetURL       String
   description     String
-  workPermit      String
   isFeatured      Boolean  @default(false)
   monthlyRenew    Boolean  @default(false)
   bringToTop      Boolean  @default(false)
-  payment         Json
+  payment         Json?
   reatedAt        DateTime @default(now())
   updatedAt       DateTime @updatedAt
 }

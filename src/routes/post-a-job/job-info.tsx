@@ -4,6 +4,8 @@ import { RadioGroup } from "~/components/ui/data-input/radio-group";
 import { Textarea } from "~/components/ui/data-input/text-area";
 import { TextInput } from "~/components/ui/data-input/text-input";
 import { useCompany } from ".";
+import { SalaryInput } from "./salary-input";
+import { EmploymentModel } from "./employment-model";
 
 interface JobInfoProps {
   onTabChange: QRL<(tab: number) => {}>;
@@ -11,7 +13,7 @@ interface JobInfoProps {
 export default component$((props: JobInfoProps) => {
   const company = useCompany();
   const { onTabChange } = props;
-  const workType = [
+  const jobType = [
     {
       label: "Full-time",
       value: "fulltime",
@@ -44,11 +46,13 @@ export default component$((props: JobInfoProps) => {
       value: "junior",
     },
   ];
+
   return (
     <div class="container max-w-2xl w-full mx-auto py-8">
       <div class="mb-8">
         <Logo />
       </div>
+
       <div>
         <div class="font-semibold text-2xl font-display">
           Describe your opening
@@ -59,7 +63,7 @@ export default component$((props: JobInfoProps) => {
         </div>
       </div>
 
-      <div class="mt-4">
+      <div class="mt-4 flex flex-col gap-y-4">
         {company.value && (
           <TextInput
             name="company"
@@ -71,12 +75,22 @@ export default component$((props: JobInfoProps) => {
         )}
 
         <TextInput name="title" id="title" label="Title" />
-        <RadioGroup name="workType" label="Work type" data={workType} />
+        <RadioGroup name="jobType" label="Work type" data={jobType} />
         <RadioGroup
           name="experienceLevel"
           label="Experience level"
           data={expLevel}
         />
+        <EmploymentModel />
+
+        <TextInput name="targetURL" id="targetURL" label="Apply Target URL" />
+        <TextInput
+          name="locations"
+          id="locations"
+          label="Locations (seperated by comma)"
+        />
+        <SalaryInput />
+
         <Textarea
           name="description"
           label="Description"
