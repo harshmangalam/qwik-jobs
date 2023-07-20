@@ -42,10 +42,14 @@ export const useCreateJob = routeAction$(
       monthlyRenew,
       ...rest
     } = formData;
+
     await prisma.job.create({
       data: {
         ...rest,
         locations: locations.split(","),
+        bringToTop: bringToTop == "on",
+        isFeatured: isFeatured == "on",
+        monthlyRenew: monthlyRenew == "on",
         salary: {
           salaryRangeFrom,
           salaryRangeTo,
@@ -54,6 +58,7 @@ export const useCreateJob = routeAction$(
         },
       },
     });
+
     throw redirect(303, "/account/jobs");
   },
   zod$({
@@ -68,9 +73,9 @@ export const useCreateJob = routeAction$(
     salaryRangeTo: z.string().nonempty(),
     targetURL: z.string().nonempty(),
     description: z.string().nonempty(),
-    isFeatured: z.string().optional(),
-    monthlyRenew: z.string().optional(),
-    bringToTop: z.string().optional(),
+    isFeatured: z.string(),
+    monthlyRenew: z.string(),
+    bringToTop: z.string(),
   })
 );
 export default component$(() => {

@@ -50,14 +50,14 @@ export const PlaceOrder = component$((props: PlaceOrderProps) => {
               <PriceConditionCard
                 title="Bring to top after 14 days"
                 description="Place the job on the top of the list again after 14 days"
-                price="$5.00"
+                price="$4.00"
                 value={bringToTop.value}
                 onChange={handleBringToTopChange}
               />
               <PriceConditionCard
                 title="Featured job post"
                 description="Feature your opening in highlight and get more visibility"
-                price="$7.00"
+                price="$6.00"
                 value={isFeatured.value}
                 onChange={handleIsFeaturedChange}
               />
@@ -83,6 +83,21 @@ export const PlaceOrder = component$((props: PlaceOrderProps) => {
             onChange={handleChangeMonthlyRenew}
           />
           <div class="mt-8">
+            <input
+              type="hidden"
+              name="isFeatured"
+              value={isFeatured.value ? "on" : "off"}
+            />
+            <input
+              type="hidden"
+              name="bringToTop"
+              value={bringToTop.value ? "on" : "off"}
+            />
+            <input
+              type="hidden"
+              name="monthlyRenew"
+              value={monthlyRenew.value ? "on" : "off"}
+            />
             <Button
               type="submit"
               size="btn-lg"
