@@ -33,11 +33,7 @@ export default component$(() => {
             are hiring Qwik developers.
           </div>
           <h4 class="mt-8 uppercase text-sm mb-4"> Trusted by: </h4>
-          <div class="flex flex-wrap justify-center items-center gap-x-2 md:gap-x-8 gap-y-4 mt-2">
-            {[...new Array(4)].map((_, i) => (
-              <Company key={i} />
-            ))}
-          </div>
+          <Company />
         </div>
       </section>
 
