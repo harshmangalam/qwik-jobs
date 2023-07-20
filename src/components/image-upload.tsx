@@ -11,9 +11,10 @@ import {
 type ImageUploadProps = QwikIntrinsicElements["input"] & {
   label: string;
   id: string;
+  avatar?: string | null;
 };
 export const ImageUpload = component$((props: ImageUploadProps) => {
-  const { id, label, ...inputProps } = props;
+  const { id, label, avatar, ...inputProps } = props;
   const preview = useSignal<string>();
   const inputRef = useSignal<HTMLInputElement | undefined>();
 
@@ -62,11 +63,11 @@ export const ImageUpload = component$((props: ImageUploadProps) => {
         class="border border-dashed p-2  w-full rounded-lg flex items-center gap-4"
       >
         <div class="w-20 h-20">
-          {preview.value ? (
+          {avatar || preview.value ? (
             <div class="avatar">
               <div class="w-full h-full">
                 <img
-                  src={preview.value}
+                  src={avatar || preview.value}
                   alt="Thumbnail"
                   width={80}
                   height={80}

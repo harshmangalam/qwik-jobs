@@ -118,7 +118,12 @@ export default component$(() => {
           name="name"
           value={company.value?.name ?? ""}
         />
-        <ImageUpload label="Avatar" name="avatar" id="avatar" />
+        <ImageUpload
+          avatar={company.value?.avatar}
+          label="Avatar"
+          name="avatar"
+          id="avatar"
+        />
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <TextInput
             label="Website"
