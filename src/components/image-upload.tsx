@@ -78,7 +78,7 @@ export const ImageUpload = component$((props: ImageUploadProps) => {
             <div class="mask mask-squircle w-full h-full bg-base-200" />
           )}
         </div>
-        <div class="flex flex-col gap-y-2">
+        <div class="flex flex-col gap-y-2 items-start">
           <p>Click to select an image or drag your file here.</p>
           <div>
             {preview.value && (

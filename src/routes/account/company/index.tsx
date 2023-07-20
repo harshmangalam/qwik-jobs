@@ -11,6 +11,7 @@ import { ImageUpload } from "~/components/image-upload";
 import { Button } from "~/components/ui/actions/button";
 import { TextInput } from "~/components/ui/data-input/text-input";
 import { prisma } from "~/lib/prisma";
+import { fileUpload } from "~/utils/blob";
 
 export const useCompany = routeLoader$(async ({ sharedMap, error }) => {
   const session: Session | null = sharedMap.get("session");
@@ -28,7 +29,7 @@ export const useCompany = routeLoader$(async ({ sharedMap, error }) => {
 });
 export const useUpdateCompany = routeAction$(
   async (
-    { locations, name, twitter, website, companyId },
+    { locations, name, twitter, website, companyId, avatar },
     { error, redirect, sharedMap }
   ) => {
     try {
@@ -53,6 +54,8 @@ export const useUpdateCompany = routeAction$(
         return error(404, "User not found");
       }
 
+      const uploaded = avatar ? await fileUpload(avatar) : null;
+
       if (!user.company) {
         // create new company
 
@@ -63,6 +66,8 @@ export const useUpdateCompany = routeAction$(
             twitter,
             locations: locations.split(","),
             userId: user.id,
+            avatar: uploaded.secure_url,
+            avatarPublicId: avatar.public_id,
           },
         });
       } else {
@@ -76,6 +81,8 @@ export const useUpdateCompany = routeAction$(
             name,
             twitter,
             website,
+            avatar: uploaded.secure_url,
+            avatarPublicId: avatar.public_id,
           },
         });
       }

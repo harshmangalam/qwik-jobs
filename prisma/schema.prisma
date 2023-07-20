@@ -57,17 +57,18 @@ model VerificationToken {
 }
 
 model Company {
-  id        String   @id @default(cuid())
-  name      String?
-  avatar    String?
-  website   String?
-  twitter   String?
-  jobs      Job[]
-  locations String[]
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId    String   @unique
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id             String   @id @default(cuid())
+  name           String?
+  avatar         String?
+  avatarPublicId String?
+  website        String?
+  twitter        String?
+  jobs           Job[]
+  locations      String[]
+  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId         String   @unique
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
 }
 
 model Job {
