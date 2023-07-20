@@ -1,7 +1,33 @@
+import { type Session } from "@auth/core/types";
 import { component$ } from "@builder.io/qwik";
-import { Link } from "@builder.io/qwik-city";
+import { Link, routeLoader$ } from "@builder.io/qwik-city";
+import { prisma } from "~/lib/prisma";
 
+export const useJobs = routeLoader$(({ sharedMap, redirect }) => {
+  const session: Session | null = sharedMap.get("session");
+  if (!session?.user?.email) {
+    throw redirect(303, "/login");
+  }
+  return prisma.job.findMany({
+    where: {
+      user: {
+        email: session.user.email,
+      },
+    },
+  });
+});
 export default component$(() => {
+  const jobs = useJobs();
+  const columns = [
+    "Title ",
+    "Job type",
+    "Experience level",
+    "Employment model",
+    "Locations",
+    "Created date",
+    "Updated date",
+    "Actions",
+  ];
   return (
     <div>
       <div class="flex items-center justify-between">
@@ -17,6 +43,58 @@ export default component$(() => {
           ></iconify-icon>
           Create job
         </Link>
+      </div>
+
+      <div class="mt-8">
+        <table class="table table-zebra">
+          <thead>
+            <tr>
+              {columns.map((column) => (
+                <th key={column}>{column}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {jobs.value.map(
+              ({
+                employmentModel,
+                experienceLevel,
+                id,
+                jobType,
+                locations,
+                title,
+                updatedAt,
+                createdAt,
+              }) => (
+                <tr key={id}>
+                  <td>{title}</td>
+                  <td>{jobType}</td>
+                  <td>{experienceLevel}</td>
+                  <td>{employmentModel}</td>
+                  <td>{locations}</td>
+                  <td>{createdAt.toDateString()}</td>
+                  <td>{updatedAt.toDateString()}</td>
+                  <td>
+                    <div class="join">
+                      <Link
+                        class="join-item btn btn-warning btn-sm"
+                        href="/account/jobs"
+                      >
+                        Edit
+                      </Link>
+                      <Link
+                        class="join-item btn btn-error btn-sm"
+                        href="/account/jobs"
+                      >
+                        Delete
+                      </Link>
+                    </div>
+                  </td>
+                </tr>
+              )
+            )}
+          </tbody>
+        </table>
       </div>
     </div>
   );

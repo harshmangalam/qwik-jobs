@@ -30,7 +30,8 @@ export const useCompany = routeLoader$(async ({ redirect, sharedMap }) => {
 });
 
 export const useCreateJob = routeAction$(
-  async (formData, { redirect }) => {
+  async (formData, { redirect, sharedMap }) => {
+    const session: any = sharedMap.get("session");
     const {
       salaryCurrency,
       salaryRangeTo,
@@ -55,6 +56,11 @@ export const useCreateJob = routeAction$(
           salaryRangeTo,
           salaryCurrency,
           salaryPeriod,
+        },
+        user: {
+          connect: {
+            email: session?.user?.email,
+          },
         },
       },
     });
