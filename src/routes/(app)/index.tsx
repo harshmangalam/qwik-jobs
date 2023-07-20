@@ -1,10 +1,25 @@
 import { component$ } from "@builder.io/qwik";
-import { Link, type DocumentHead } from "@builder.io/qwik-city";
+import { Link, type DocumentHead, routeLoader$ } from "@builder.io/qwik-city";
 import { Company } from "~/components/company";
 import { JobCard } from "~/components/job-card";
 import { JobStat } from "~/components/job-stat";
+import { prisma } from "~/lib/prisma";
 
+export const useJobs = routeLoader$(async () => {
+  return prisma.job.findMany({
+    take: 5,
+    include: {
+      company: {
+        select: {
+          name: true,
+          avatar: true,
+        },
+      },
+    },
+  });
+});
 export default component$(() => {
+  const jobs = useJobs();
   return (
     <div>
       <section class="py-16 bg-base-200 text-center">
@@ -29,8 +44,8 @@ export default component$(() => {
       <section class="bg-base-100 py-12 container mx-auto">
         <div class="text-xl font-bold text-center mb-4">Lastest Qwik Jobs</div>
         <div class="grid grid-cols-1 gap-4 max-w-3xl mx-auto">
-          {[...new Array(4)].map((_, i) => (
-            <JobCard key={i} />
+          {jobs.value.map((job) => (
+            <JobCard key={job.id} {...job} />
           ))}
         </div>
       </section>

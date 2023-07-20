@@ -40,6 +40,7 @@ export const useCreateJob = routeAction$(
       locations,
       isFeatured,
       bringToTop,
+      companyId,
       monthlyRenew,
       ...rest
     } = formData;
@@ -62,6 +63,11 @@ export const useCreateJob = routeAction$(
             email: session?.user?.email,
           },
         },
+        company: {
+          connect: {
+            id: companyId,
+          },
+        },
       },
     });
 
@@ -82,6 +88,7 @@ export const useCreateJob = routeAction$(
     isFeatured: z.string(),
     monthlyRenew: z.string(),
     bringToTop: z.string(),
+    companyId: z.string().nonempty(),
   })
 );
 export default component$(() => {
@@ -94,6 +101,7 @@ export default component$(() => {
   });
   return (
     <Form action={action} class="w-full min-h-screen h-full relative">
+      <input type="hidden" name="companyId" value={company.value?.id} />
       <div class={[currentTab.value === 1 ? "block" : "hidden"]}>
         <CompanyInfo onTabChange={handleChangeTab} />
       </div>

@@ -1,7 +1,23 @@
 import { component$ } from "@builder.io/qwik";
 import { Link } from "@builder.io/qwik-city";
 
-export const JobCard = component$(() => {
+interface JobCardProps {
+  title: string;
+  jobType: string;
+  experienceLevel: string;
+  employmentModel: string;
+  locations: string[];
+  company: any;
+}
+export const JobCard = component$((props: JobCardProps) => {
+  const {
+    title,
+    company,
+    employmentModel,
+    experienceLevel,
+    jobType,
+    locations,
+  } = props;
   return (
     <Link
       href="/jobs/playpilot-2-senior-frontend-developer-clone"
@@ -11,8 +27,8 @@ export const JobCard = component$(() => {
         <div class="flex items-center">
           <div class="overflow-hidden  w-12 h-12 md:w-12 md:h-12 rounded-xl shrink-0">
             <img
-              src="https://app.sveltejobs.com/storage/243/e94f10f5-9030-4d12-a9b8-f6a501930127.png"
-              alt="Logo PlayPilot"
+              src={company.avatar}
+              alt={company.name}
               class="object-contain w-full h-full"
               loading="lazy"
               width={48}
@@ -21,11 +37,11 @@ export const JobCard = component$(() => {
           </div>
           <div class="ml-3">
             <div class="font-display text-lg leading-tight font-bold">
-              Senior Frontend Developer
+              {title}
             </div>
             <div>
               <div class="flex items-center text-sm font-medium text-muted">
-                at PlayPilot
+                {company.name}
               </div>
             </div>
           </div>
@@ -40,18 +56,15 @@ export const JobCard = component$(() => {
         </div>
       </div>
       <div class="text-xs mt-3 flex gap-x-4 gap-y-1 flex-wrap items-center md:gap-2">
-        <span class="inline-block bg-gray-100 px-1.5 py-0.5 rounded-lg">
-          Remote allowed
-        </span>
-        <span class="inline-flex gap-1.5 items-center px-1.5 py-0.5 bg-gray-100 font-medium rounded-lg">
-          <img
-            src="https://hatscripts.github.io/circle-flags/flags/se.svg"
-            alt="Flag of Sweden"
-            width={16}
-            height={16}
-          />
-          Stockholm, Sweden
-        </span>
+        <div class="badge badge-info">{jobType}</div>
+        <div class="badge badge-secondary">{employmentModel}</div>
+        <div class="badge badge-accent">{experienceLevel}</div>
+
+        {locations.map((location) => (
+          <div class="badge" key={location}>
+            {location}
+          </div>
+        ))}
       </div>
     </Link>
   );

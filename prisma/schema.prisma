@@ -62,6 +62,7 @@ model Company {
   avatar    String?
   website   String?
   twitter   String?
+  jobs      Job[]
   locations String[]
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId    String   @unique
@@ -85,6 +86,9 @@ model Job {
   payment         Json?
   user            User     @relation(fields: [userId], references: [id])
   userId          String
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
+  company         Company  @relation(fields: [companyId], references: [id])
+  companyId       String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
