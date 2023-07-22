@@ -41,17 +41,82 @@ export default component$(() => {
           <div class="flex items-center gap-3">
             <div class="text-xl">{job.value?.company.name}</div>
             {job.value?.company.website && (
-              <div class="flex items-center gap-2">
+              <a
+                target="_blank"
+                href={job.value.company.website}
+                class="flex items-center gap-2 px-3 py-1 border border-base-100 hover:border-base-300 rounded-full"
+              >
                 <iconify-icon
-                  width={24}
-                  height={24}
+                  width={18}
+                  height={18}
                   icon="solar:link-broken"
                 ></iconify-icon>
-                <div class="badge badge-ghost">
-                  <a href={job.value.company.website}>Website</a>
+                <span>Website</span>
+              </a>
+            )}
+          </div>
+        </div>
+
+        <div class="mt-8 grid grid-cols-1 lg:grid-cols-12 gap-12">
+          <div class="lg:col-span-8">
+            <div class="font-bold text-3xl">Job description</div>
+            <div
+              class="mt-6"
+              dangerouslySetInnerHTML={job.value?.description}
+            ></div>
+          </div>
+          <div class="lg:col-span-4">
+            <div class="stats stats-vertical shadow w-full">
+              <div class="stat">
+                <div class="stat-title">Employment model</div>
+                <div class="stat-value text-lg">
+                  {job.value?.employmentModel}
                 </div>
               </div>
-            )}
+              <div class="stat">
+                <div class="stat-title">Experience level</div>
+                <div class="stat-value text-lg">
+                  {job.value?.experienceLevel}
+                </div>
+              </div>
+              <div class="stat">
+                <div class="stat-title">Locations</div>
+                <div class="stat-value mt-2 flex gap-2 flex-wrap">
+                  {job.value?.locations.map((location) => (
+                    <div class="badge badge-lg" key={location}>
+                      {location}
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div class="stat">
+                <div class="stat-title">Job type</div>
+                <div class="stat-value text-lg">{job.value?.jobType}</div>
+              </div>
+              <div class="stat">
+                <div class="stat-title">Date posted</div>
+                <div class="stat-value text-lg">
+                  {job.value?.createdAt.toDateString()}
+                </div>
+              </div>
+              <div class="stat">
+                <div class="stat-title">Salary</div>
+                <div class="stat-value text-lg">
+                  {(job.value?.salary as any)?.salaryCurrency}{" "}
+                  {(job.value?.salary as any)?.salaryRangeFrom} -{" "}
+                  {(job.value?.salary as any)?.salaryRangeTo}
+                </div>
+              </div>
+            </div>
+            <div class="mt-8">
+              <a
+                target="_blank"
+                href={job.value?.targetURL}
+                class="btn btn-primary btn-block btn-lg"
+              >
+                Apply now
+              </a>
+            </div>
           </div>
         </div>
       </div>
