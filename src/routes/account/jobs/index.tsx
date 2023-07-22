@@ -95,15 +95,7 @@ export default component$(() => {
                   <td>{createdAt.toDateString()}</td>
                   <td>{updatedAt.toDateString()}</td>
                   <td>
-                    <div class="join">
-                      <Link
-                        class="join-item btn btn-warning btn-sm"
-                        href="/account/jobs"
-                      >
-                        Edit
-                      </Link>
-                      <DeleteJob id={id} />
-                    </div>
+                    <DeleteJob id={id} />
                   </td>
                 </tr>
               )

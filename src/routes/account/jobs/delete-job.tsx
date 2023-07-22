@@ -11,7 +11,7 @@ export const DeleteJob = component$(({ id }: { id: string }) => {
       <Button
         loading={action.isRunning}
         type="submit"
-        class="join-item btn btn-error btn-sm"
+        class="btn btn-error btn-sm"
       >
         Delete
       </Button>
