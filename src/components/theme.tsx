@@ -25,7 +25,7 @@ export const Theme = component$(() => {
   });
 
   return (
-    <div class="dropdown dropdown-end">
+    <div class="dropdown dropdown-end z-40">
       <label tabIndex={0} class="btn btn-ghost btn-circle">
         <iconify-icon
           width={20}
