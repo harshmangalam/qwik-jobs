@@ -2,6 +2,7 @@ import { component$ } from "@builder.io/qwik";
 import { Link } from "@builder.io/qwik-city";
 
 interface JobCardProps {
+  id: string;
   title: string;
   jobType: string;
   experienceLevel: string;
@@ -11,6 +12,7 @@ interface JobCardProps {
 }
 export const JobCard = component$((props: JobCardProps) => {
   const {
+    id,
     title,
     company,
     employmentModel,
@@ -20,7 +22,7 @@ export const JobCard = component$((props: JobCardProps) => {
   } = props;
   return (
     <Link
-      href="/jobs/playpilot-2-senior-frontend-developer-clone"
+      href={`/jobs/${id}`}
       class="bg-base-100 transition-all group duration-200 ease-in-out hover:border-l-8 hover:ring-2 ring-primary hover:border-primary cursor-pointer relative  block border rounded-xl p-4  group  ring-brand-primary"
     >
       <div class="flex flex-col justify-center md:flex-row md:justify-start md:items-center">
