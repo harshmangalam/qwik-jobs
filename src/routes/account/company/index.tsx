@@ -11,7 +11,7 @@ import { ImageUpload } from "~/components/image-upload";
 import { Button } from "~/components/ui/actions/button";
 import { TextInput } from "~/components/ui/data-input/text-input";
 import { prisma } from "~/lib/prisma";
-import { fileUpload } from "~/utils/blob";
+import { destroyBlob, fileUpload } from "~/utils/blob";
 
 export const useCompany = routeLoader$(async ({ sharedMap, error }) => {
   const session: Session | null = sharedMap.get("session");
@@ -45,6 +45,7 @@ export const useUpdateCompany = routeAction$(
           company: {
             select: {
               id: true,
+              avatarPublicId: true,
             },
           },
         },
@@ -66,12 +67,15 @@ export const useUpdateCompany = routeAction$(
             twitter,
             locations: locations.split(","),
             userId: user.id,
-            avatar: uploaded.secure_url,
-            avatarPublicId: avatar.public_id,
+            avatar: uploaded ? uploaded.secure_url : undefined,
+            avatarPublicId: uploaded ? uploaded.public_id : undefined,
           },
         });
       } else {
         // update company
+        if (avatar && user.company.avatarPublicId) {
+          await destroyBlob(user.company.avatarPublicId);
+        }
         await prisma.company.update({
           where: {
             id: companyId,
@@ -81,8 +85,8 @@ export const useUpdateCompany = routeAction$(
             name,
             twitter,
             website,
-            avatar: uploaded.secure_url,
-            avatarPublicId: avatar.public_id,
+            avatar: uploaded ? uploaded.secure_url : undefined,
+            avatarPublicId: uploaded ? uploaded.public_id : undefined,
           },
         });
       }

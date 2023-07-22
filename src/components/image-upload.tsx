@@ -59,6 +59,7 @@ export const ImageUpload = component$((props: ImageUploadProps) => {
       />
 
       <button
+        type="button"
         onClick$={() => inputRef.value?.click()}
         class="border border-dashed p-2  w-full rounded-lg flex items-center gap-4"
       >
@@ -67,7 +68,7 @@ export const ImageUpload = component$((props: ImageUploadProps) => {
             <div class="avatar">
               <div class="w-full h-full">
                 <img
-                  src={avatar || preview.value}
+                  src={preview.value || (avatar as string)}
                   alt="Thumbnail"
                   width={80}
                   height={80}
@@ -83,7 +84,7 @@ export const ImageUpload = component$((props: ImageUploadProps) => {
           <p>Click to select an image or drag your file here.</p>
           <div>
             {preview.value && (
-              <button class="btn btn-sm" onClick$={handleRemove}>
+              <button type="button" class="btn btn-sm" onClick$={handleRemove}>
                 Remove
               </button>
             )}
