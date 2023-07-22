@@ -73,7 +73,8 @@ export const useUpdateCompany = routeAction$(
         });
       } else {
         // update company
-        if (avatar && user.company.avatarPublicId) {
+
+        if (avatar?.size > 0 && user.company.avatarPublicId) {
           await destroyBlob(user.company.avatarPublicId);
         }
         await prisma.company.update({
