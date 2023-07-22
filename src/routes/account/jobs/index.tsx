@@ -1,7 +1,14 @@
 import { type Session } from "@auth/core/types";
 import { component$ } from "@builder.io/qwik";
-import { Link, routeLoader$ } from "@builder.io/qwik-city";
+import {
+  Link,
+  routeAction$,
+  routeLoader$,
+  z,
+  zod$,
+} from "@builder.io/qwik-city";
 import { prisma } from "~/lib/prisma";
+import { DeleteJob } from "./delete-job";
 
 export const useJobs = routeLoader$(({ sharedMap, redirect }) => {
   const session: Session | null = sharedMap.get("session");
@@ -16,6 +23,19 @@ export const useJobs = routeLoader$(({ sharedMap, redirect }) => {
     },
   });
 });
+export const useDeleteJob = routeAction$(
+  async ({ id }, { redirect }) => {
+    await prisma.job.delete({
+      where: {
+        id,
+      },
+    });
+    throw redirect(303, "/account/jobs");
+  },
+  zod$({
+    id: z.string().nonempty(),
+  })
+);
 export default component$(() => {
   const jobs = useJobs();
   const columns = [
@@ -82,12 +102,7 @@ export default component$(() => {
                       >
                         Edit
                       </Link>
-                      <Link
-                        class="join-item btn btn-error btn-sm"
-                        href="/account/jobs"
-                      >
-                        Delete
-                      </Link>
+                      <DeleteJob id={id} />
                     </div>
                   </td>
                 </tr>
