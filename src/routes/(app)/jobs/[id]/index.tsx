@@ -61,7 +61,7 @@ export default component$(() => {
           <div class="lg:col-span-8">
             <div class="font-bold text-3xl">Job description</div>
             <div
-              class="mt-6"
+              class="mt-6 prose w-full"
               dangerouslySetInnerHTML={job.value?.description}
             ></div>
           </div>
