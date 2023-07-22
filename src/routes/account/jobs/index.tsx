@@ -91,7 +91,18 @@ export default component$(() => {
                   <td>{jobType}</td>
                   <td>{experienceLevel}</td>
                   <td>{employmentModel}</td>
-                  <td>{locations}</td>
+                  <td>
+                    <div class="flex flex-wrap gap-2">
+                      {locations.map((location) => (
+                        <div
+                          key={location}
+                          class="badge badge-outline badge-info"
+                        >
+                          {location}
+                        </div>
+                      ))}
+                    </div>
+                  </td>
                   <td>{createdAt.toDateString()}</td>
                   <td>{updatedAt.toDateString()}</td>
                   <td>
