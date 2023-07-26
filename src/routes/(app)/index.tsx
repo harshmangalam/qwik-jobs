@@ -9,10 +9,12 @@ export const useStats = routeLoader$(async () => {
   const jobs = await prisma.job.count();
   const company = await prisma.company.count();
   const users = await prisma.user.count();
+  const subscriber = await prisma.subscriber.count();
   return {
     jobs,
     company,
     users,
+    subscriber,
   };
 });
 export const useJobs = routeLoader$(async () => {
@@ -89,20 +91,20 @@ export default component$(() => {
             <JobStat
               count={stats.value.jobs}
               title="Job Posted"
-              icon="pajamas:work"
+              icon="material-symbols:work-outline"
             />
 
             <JobStat
-              icon="mdi:company"
+              icon="pajamas:building"
               count={stats.value.company}
               title="Companies"
             />
             <JobStat icon="la:users" count={stats.value.users} title="Users" />
 
             <JobStat
-              icon="typcn:bell"
-              count={"57%"}
-              title="Job Alerts Opening Rate"
+              icon="formkit:email"
+              count={stats.value.subscriber}
+              title="Newsletter subscribers"
             />
           </div>
         </div>

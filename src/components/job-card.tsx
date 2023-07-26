@@ -26,7 +26,7 @@ export const JobCard = component$((props: JobCardProps) => {
     <Link
       href={`/jobs/${id}`}
       class={[
-        "bg-base-100 transition-all group duration-200 ease-in-out hover:border-l-8 hover:ring-2 ring-primary hover:border-primary cursor-pointer relative  block card-bordered card",
+        "bg-base-100 transition-all group duration-200 ease-in-out hover:border-l-8 hover:ring-2 ring-primary hover:border-primary cursor-pointer relative  block card-bordered card shadow",
         {
           "bg-warning text-warning-content": isFeatured,
         },
