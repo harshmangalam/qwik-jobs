@@ -8,9 +8,11 @@ import { prisma } from "~/lib/prisma";
 export const useStats = routeLoader$(async () => {
   const jobs = await prisma.job.count();
   const company = await prisma.company.count();
+  const users = await prisma.user.count();
   return {
     jobs,
     company,
+    users,
   };
 });
 export const useJobs = routeLoader$(async () => {
@@ -87,7 +89,7 @@ export default component$(() => {
             <JobStat
               count={stats.value.jobs}
               title="Job Posted"
-              icon="material-symbols:work"
+              icon="pajamas:work"
             />
 
             <JobStat
@@ -95,14 +97,10 @@ export default component$(() => {
               count={stats.value.company}
               title="Companies"
             />
-            <JobStat
-              icon="gridicons:user"
-              count={"~2 weeks"}
-              title="Time to find a candidate"
-            />
+            <JobStat icon="la:users" count={stats.value.users} title="Users" />
 
             <JobStat
-              icon="fluent:alert-on-20-filled"
+              icon="typcn:bell"
               count={"57%"}
               title="Job Alerts Opening Rate"
             />
