@@ -8,16 +8,6 @@ export const Company = component$(() => {
       avatar:
         "https://cdn.builder.io/api/v1/image/assets%2FYJIGb4i01jvw0SRdL5Bt%2F470aa2bd45fb4ff5b77c91a394a957e6?width=240",
     },
-    {
-      name: "Reflect",
-      link: "https://reflect.app/",
-      avatar: "https://reflect.app/home/build/q-7110c4a0.png",
-    },
-    {
-      name: "Reflect",
-      link: "https://soundy.cloud/",
-      avatar: "https://soundy.cloud/favicon-32x32.png",
-    },
   ];
   return (
     <div class="flex flex-wrap justify-center items-center gap-x-2 md:gap-x-8 gap-y-4 mt-2">
