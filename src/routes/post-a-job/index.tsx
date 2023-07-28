@@ -11,6 +11,7 @@ import JobInfo from "./job-info";
 import { PlaceOrder } from "./place-order";
 import { type Session } from "@auth/core/types";
 import { prisma } from "~/lib/prisma";
+import { stripe } from "~/lib/stripe";
 
 export const useCompany = routeLoader$(async ({ redirect, sharedMap }) => {
   const session: Session | null = sharedMap.get("session");
@@ -35,9 +36,13 @@ export const useCompany = routeLoader$(async ({ redirect, sharedMap }) => {
 
 export const useCreateJob = routeAction$(
   async (formData, { redirect, sharedMap }) => {
-    const session: any = sharedMap.get("session");
+    const session: Session | null = sharedMap.get("session");
+    if (!session?.user?.email) {
+      throw redirect(302, "/login");
+    }
     const {
       salaryCurrency,
+      basePostingPriceId,
       salaryRangeTo,
       salaryPeriod,
       salaryRangeFrom,
@@ -46,9 +51,37 @@ export const useCreateJob = routeAction$(
       bringToTop,
       companyId,
       monthlyRenew,
+      bringToTopPriceId,
+      featuredPriceId,
       ...rest
     } = formData;
+    const stripeSession = await stripe.checkout.sessions.create({
+      success_url: "http://localhost:5432/post-a-job/success",
+      cancel_url: "http://localhost:5432/account/jobs",
+      line_items: [
+        {
+          price: basePostingPriceId,
+          quantity: 1,
+        },
 
+        isFeatured
+          ? {
+              price: featuredPriceId,
+              quantity: 1,
+            }
+          : {},
+
+        bringToTop
+          ? {
+              price: bringToTopPriceId,
+              quantity: 1,
+            }
+          : {},
+      ],
+      currency: "USD",
+      customer_email: session.user.email,
+      mode: "payment",
+    });
     await prisma.job.create({
       data: {
         ...rest,
@@ -64,7 +97,7 @@ export const useCreateJob = routeAction$(
         },
         user: {
           connect: {
-            email: session?.user?.email,
+            email: session.user.email,
           },
         },
         company: {
@@ -74,8 +107,8 @@ export const useCreateJob = routeAction$(
         },
       },
     });
-
-    throw redirect(303, "/account/jobs");
+    console.log(stripeSession);
+    throw redirect(307, stripeSession.url as string);
   },
   zod$({
     title: z.string().nonempty(),
@@ -93,11 +126,9 @@ export const useCreateJob = routeAction$(
     monthlyRenew: z.string(),
     bringToTop: z.string(),
     companyId: z.string(),
-    companyName: z.string(),
-    companyWebsite: z.string(),
-    companyTwitter: z.string(),
-    companyLocations: z.string(),
-    companyAvatar: z.string(),
+    basePostingPriceId: z.string().nonempty(),
+    bringToTopPriceId: z.string().nonempty(),
+    featuredPriceId: z.string().nonempty(),
   })
 );
 export default component$(() => {

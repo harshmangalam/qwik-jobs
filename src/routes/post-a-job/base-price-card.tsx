@@ -26,6 +26,11 @@ export const BasePriceCard = component$(() => {
               <span class="label-text font-bold text-lg">Base posting</span>
               <div>
                 <input
+                  type="hidden"
+                  name="basePostingPriceId"
+                  value="price_1NYl5aSF86syIwwHPHdhAYiK"
+                />
+                <input
                   type="checkbox"
                   class="toggle toggle-primary"
                   checked

@@ -43,6 +43,7 @@ export default component$(() => {
     "Job type",
     "Experience level",
     "Employment model",
+    "Payment",
     "Locations",
     "Created date",
     "Updated date",
@@ -85,12 +86,14 @@ export default component$(() => {
                 title,
                 updatedAt,
                 createdAt,
+                payment,
               }) => (
                 <tr key={id}>
                   <td>{title}</td>
                   <td>{jobType}</td>
                   <td>{experienceLevel}</td>
                   <td>{employmentModel}</td>
+                  <td>{JSON.stringify(payment)}</td>
                   <td>
                     <div class="flex flex-wrap gap-2">
                       {locations.map((location) => (

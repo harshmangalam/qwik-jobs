@@ -51,6 +51,8 @@ export const PlaceOrder = component$((props: PlaceOrderProps) => {
                 title="Bring to top after 14 days"
                 description="Place the job on the top of the list again after 14 days"
                 price="$4.00"
+                priceId="price_1NYlGWSF86syIwwHIGQpufxq"
+                name="bringToTopPriceId"
                 value={bringToTop.value}
                 onChange={handleBringToTopChange}
               />
@@ -58,6 +60,8 @@ export const PlaceOrder = component$((props: PlaceOrderProps) => {
                 title="Featured job post"
                 description="Feature your opening in highlight and get more visibility"
                 price="$6.00"
+                name="featuredPriceId"
+                priceId="price_1NYlCnSF86syIwwHu54pmmD3"
                 value={isFeatured.value}
                 onChange={handleIsFeaturedChange}
               />
