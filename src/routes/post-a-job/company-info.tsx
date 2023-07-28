@@ -3,11 +3,12 @@ import { ImageUpload } from "~/components/image-upload";
 import { Logo } from "~/components/logo";
 import { TextInput } from "~/components/ui/data-input/text-input";
 
-interface CompanyInfoProps {
+type CompanyInfoProps = {
   onTabChange: QRL<(tab: number) => {}>;
-}
+};
 export const CompanyInfo = component$((props: CompanyInfoProps) => {
   const { onTabChange } = props;
+
   return (
     <div class="container max-w-2xl w-full mx-auto py-8">
       <div class="mb-8">
@@ -23,29 +24,29 @@ export const CompanyInfo = component$((props: CompanyInfoProps) => {
         <TextInput
           label="Name"
           placeholder="ACME Info..."
-          id="name"
+          id="companyName"
           name="name"
         />
-        <ImageUpload label="Avatar" name="avatar" id="avatar" />
+        <ImageUpload label="Avatar" name="companyAvatar" id="avatar" />
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <TextInput
             label="Website"
             placeholder="https://website.com"
             id="website"
-            name="website"
+            name="companyWebsite"
           />
           <TextInput
             label="Twitter"
             placeholder="@twitter"
-            id="twitter"
+            id="companyTwitter"
             name="twitter"
           />
         </div>
         <TextInput
-          name="location"
-          id="location"
-          label="Location"
-          placeholder="Add location"
+          name="locations"
+          id="companyLocations"
+          label="Locations (seperate by comma)"
+          placeholder="Add locations"
         />
       </div>
 

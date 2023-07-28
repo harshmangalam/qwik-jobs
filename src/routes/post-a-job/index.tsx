@@ -88,7 +88,12 @@ export const useCreateJob = routeAction$(
     isFeatured: z.string(),
     monthlyRenew: z.string(),
     bringToTop: z.string(),
-    companyId: z.string().nonempty(),
+    companyId: z.string(),
+    companyName: z.string(),
+    companyWebsite: z.string(),
+    companyTwitter: z.string(),
+    companyLocations: z.string(),
+    companyAvatar: z.string(),
   })
 );
 export default component$(() => {
