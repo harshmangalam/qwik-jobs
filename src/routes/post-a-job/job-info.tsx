@@ -1,4 +1,4 @@
-import { type QRL, component$ } from "@builder.io/qwik";
+import { component$ } from "@builder.io/qwik";
 import { Logo } from "~/components/logo";
 import { RadioGroup } from "~/components/ui/data-input/radio-group";
 import { Textarea } from "~/components/ui/data-input/text-area";
@@ -6,13 +6,11 @@ import { TextInput } from "~/components/ui/data-input/text-input";
 import { useCompany } from ".";
 import { SalaryInput } from "./salary-input";
 import { EmploymentModel } from "./employment-model";
+import { Link } from "@builder.io/qwik-city";
 
-interface JobInfoProps {
-  onTabChange: QRL<(tab: number) => {}>;
-}
-export default component$((props: JobInfoProps) => {
+export default component$(() => {
   const company = useCompany();
-  const { onTabChange } = props;
+
   const jobType = [
     {
       label: "Full-time",
@@ -97,18 +95,14 @@ export default component$((props: JobInfoProps) => {
         />
       </div>
       <div class="mt-8 flex justify-end gap-4">
-        <button
-          type="button"
-          onClick$={() => onTabChange(2)}
-          class="btn btn-primary"
-        >
+        <Link href="/post-a-job?tab=2" class="btn">
           Next
           <iconify-icon
             width={24}
             height={24}
             icon="formkit:arrowright"
           ></iconify-icon>
-        </button>
+        </Link>
       </div>
     </div>
   );

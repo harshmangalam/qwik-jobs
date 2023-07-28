@@ -1,4 +1,4 @@
-import { $, component$, useSignal } from "@builder.io/qwik";
+import { component$ } from "@builder.io/qwik";
 import {
   Form,
   routeAction$,
@@ -34,6 +34,11 @@ export const useCompany = routeLoader$(async ({ redirect, sharedMap }) => {
   return user.company;
 });
 
+export const useTab = routeLoader$(({ query }) => {
+  const tab = query.get("tab") || 1;
+  return Number(tab);
+});
+
 export const useCreateJob = routeAction$(
   async (formData, { redirect, sharedMap }) => {
     const session: Session | null = sharedMap.get("session");
@@ -64,19 +69,22 @@ export const useCreateJob = routeAction$(
           quantity: 1,
         },
 
-        isFeatured
-          ? {
-              price: featuredPriceId,
-              quantity: 1,
-            }
-          : {},
-
-        bringToTop
-          ? {
-              price: bringToTopPriceId,
-              quantity: 1,
-            }
-          : {},
+        ...(isFeatured === "on"
+          ? [
+              {
+                price: featuredPriceId,
+                quantity: 1,
+              },
+            ]
+          : []),
+        ...(bringToTop === "on"
+          ? [
+              {
+                price: bringToTopPriceId,
+                quantity: 1,
+              },
+            ]
+          : []),
       ],
       currency: "USD",
       customer_email: session.user.email,
@@ -86,9 +94,9 @@ export const useCreateJob = routeAction$(
       data: {
         ...rest,
         locations: locations.split(","),
-        bringToTop: bringToTop == "on",
-        isFeatured: isFeatured == "on",
-        monthlyRenew: monthlyRenew == "on",
+        bringToTop: bringToTop === "on",
+        isFeatured: isFeatured === "on",
+        monthlyRenew: monthlyRenew === "on",
         salary: {
           salaryRangeFrom,
           salaryRangeTo,
@@ -107,8 +115,7 @@ export const useCreateJob = routeAction$(
         },
       },
     });
-    console.log(stripeSession);
-    throw redirect(307, stripeSession.url as string);
+    return { url: stripeSession.url };
   },
   zod$({
     title: z.string().nonempty(),
@@ -131,23 +138,19 @@ export const useCreateJob = routeAction$(
     featuredPriceId: z.string().nonempty(),
   })
 );
+
 export default component$(() => {
   const company = useCompany();
-  const currentTab = useSignal(1);
   const action = useCreateJob();
-
-  const handleChangeTab = $((tab: number) => {
-    currentTab.value = tab;
-  });
+  const tab = useTab();
   return (
     <Form action={action} class="w-full min-h-screen h-full relative">
       <input type="hidden" name="companyId" value={company.value.id} />
-
-      <div class={[currentTab.value === 1 ? "block" : "hidden"]}>
-        <JobInfo onTabChange={handleChangeTab} />
+      <div class={[tab.value === 1 ? "block" : "hidden"]}>
+        <JobInfo />
       </div>
-      <div class={[currentTab.value === 2 ? "block" : "hidden"]}>
-        <PlaceOrder onTabChange={handleChangeTab} />
+      <div class={[tab.value === 2 ? "block" : "hidden"]}>
+        <PlaceOrder url={action.value?.url} loading={action.isRunning} />
       </div>
     </Form>
   );
