@@ -65,7 +65,7 @@ export const PlaceOrder = component$((props: PlaceOrderProps) => {
           </div>
         </div>
         <div class="mt-8">
-          <button onClick$={() => onTabChange(1)} class="btn">
+          <button type="button" onClick$={() => onTabChange(1)} class="btn">
             <iconify-icon
               width={24}
               height={24}

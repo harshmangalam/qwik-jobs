@@ -64,15 +64,13 @@ export default component$((props: JobInfoProps) => {
       </div>
 
       <div class="mt-4 flex flex-col gap-y-4">
-        {company.value && (
-          <TextInput
-            name="company"
-            id="company"
-            label="Company"
-            disabled
-            value={company.value.name}
-          />
-        )}
+        <TextInput
+          name="company"
+          id="company"
+          label="Company"
+          disabled
+          value={company.value.name}
+        />
 
         <TextInput name="title" id="title" label="Title" />
         <RadioGroup name="jobType" label="Work type" data={jobType} />
@@ -99,16 +97,6 @@ export default component$((props: JobInfoProps) => {
         />
       </div>
       <div class="mt-8 flex justify-end gap-4">
-        {!company.value && (
-          <button type="button" onClick$={() => onTabChange(1)} class="btn">
-            <iconify-icon
-              width={24}
-              height={24}
-              icon="formkit:arrowleft"
-            ></iconify-icon>
-            Prev
-          </button>
-        )}
         <button
           type="button"
           onClick$={() => onTabChange(2)}
