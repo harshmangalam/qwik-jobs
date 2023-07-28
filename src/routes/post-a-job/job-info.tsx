@@ -111,7 +111,7 @@ export default component$((props: JobInfoProps) => {
         )}
         <button
           type="button"
-          onClick$={() => onTabChange(3)}
+          onClick$={() => onTabChange(2)}
           class="btn btn-primary"
         >
           Next

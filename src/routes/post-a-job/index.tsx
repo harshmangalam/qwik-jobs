@@ -6,7 +6,7 @@ import {
   z,
   zod$,
 } from "@builder.io/qwik-city";
-import { CompanyInfo } from "./company-info";
+
 import JobInfo from "./job-info";
 import { PlaceOrder } from "./place-order";
 import { type Session } from "@auth/core/types";
@@ -26,7 +26,11 @@ export const useCompany = routeLoader$(async ({ redirect, sharedMap }) => {
     },
   });
 
-  return user?.company;
+  if (!user?.company) {
+    throw redirect(302, "/account/company");
+  }
+
+  return user.company;
 });
 
 export const useCreateJob = routeAction$(
@@ -98,7 +102,7 @@ export const useCreateJob = routeAction$(
 );
 export default component$(() => {
   const company = useCompany();
-  const currentTab = useSignal(company.value ? 2 : 1);
+  const currentTab = useSignal(1);
   const action = useCreateJob();
 
   const handleChangeTab = $((tab: number) => {
@@ -106,15 +110,12 @@ export default component$(() => {
   });
   return (
     <Form action={action} class="w-full min-h-screen h-full relative">
-      <input type="hidden" name="companyId" value={company.value?.id} />
-      <div class={[currentTab.value === 1 ? "block" : "hidden"]}>
-        <CompanyInfo onTabChange={handleChangeTab} />
-      </div>
+      <input type="hidden" name="companyId" value={company.value.id} />
 
-      <div class={[currentTab.value === 2 ? "block" : "hidden"]}>
+      <div class={[currentTab.value === 1 ? "block" : "hidden"]}>
         <JobInfo onTabChange={handleChangeTab} />
       </div>
-      <div class={[currentTab.value === 3 ? "block" : "hidden"]}>
+      <div class={[currentTab.value === 2 ? "block" : "hidden"]}>
         <PlaceOrder onTabChange={handleChangeTab} />
       </div>
     </Form>
