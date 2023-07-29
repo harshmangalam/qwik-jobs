@@ -13,6 +13,7 @@ export const { onRequest, useAuthSession, useAuthSignin, useAuthSignout } =
       GitHub({
         clientId: env.get("GITHUB_ID")!,
         clientSecret: env.get("GITHUB_SECRET")!,
+        redirectProxyUrl: "https://abf8-49-205-247-22.ngrok-free.app",
       }),
     ] as Provider[],
   }));

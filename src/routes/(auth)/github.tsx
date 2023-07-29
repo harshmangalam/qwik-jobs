@@ -11,7 +11,7 @@ export const Github = component$(() => {
       <input
         type="hidden"
         name="options.callbackUrl"
-        value="http://localhost:5173"
+        value="https://abf8-49-205-247-22.ngrok-free.app"
       />
       <Button type="submit" fullWidth outline>
         <iconify-icon width={24} height={24} icon="mdi:github"></iconify-icon>
